@@ -80,6 +80,7 @@ struct MainView: View {
             case .closeCommand:
                 showSTTModal = false
                 showTTSModal = false
+                isTextReceived = false
             case .restartCommand:
                 break
             case .notDefined:

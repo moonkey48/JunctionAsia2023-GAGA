@@ -9,11 +9,9 @@ import SwiftUI
 
 @main
 struct JunctionAsia2023_GAGAApp: App {
-    @State private var showOnboarding = UserDefaults.standard.string(forKey: "userType") ?? "Unselected" == "Unselected"
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .fullScreenCover(isPresented: $showOnboarding, content: OnBoardingView.init)    
+            ContentView()
         }
     }
 }
