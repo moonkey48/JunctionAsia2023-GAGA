@@ -29,6 +29,7 @@
 		BE0B01A12A90800500FA9320 /* PapagoAPI.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE0B01A02A90800500FA9320 /* PapagoAPI.plist */; };
 		BE0B01A32A909F1500FA9320 /* UserLanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0B01A22A909F1500FA9320 /* UserLanguageSelectionView.swift */; };
 		BE15247B2A9067B400BF6F92 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15247A2A9067B400BF6F92 /* LanguageModel.swift */; };
+		BE9BA9572A91474C00AEB993 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9BA9562A91474C00AEB993 /* SettingView.swift */; };
 		BEA10C8C2A90A2F000354196 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C8B2A90A2F000354196 /* Color.swift */; };
 		BEA10C8E2A90A4DD00354196 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C8D2A90A4DD00354196 /* Font.swift */; };
 		BEA10C902A910F4400354196 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C8F2A910F4400354196 /* LanguageCell.swift */; };
@@ -67,6 +68,7 @@
 		BE0B01A02A90800500FA9320 /* PapagoAPI.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PapagoAPI.plist; sourceTree = "<group>"; };
 		BE0B01A22A909F1500FA9320 /* UserLanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLanguageSelectionView.swift; sourceTree = "<group>"; };
 		BE15247A2A9067B400BF6F92 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
+		BE9BA9562A91474C00AEB993 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		BEA10C8B2A90A2F000354196 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		BEA10C8D2A90A4DD00354196 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		BEA10C8F2A910F4400354196 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				959862312A9109370047E1D5 /* CommandTestView.swift */,
 				BEA10C9B2A9121E100354196 /* OnBoardingView.swift */,
 				BEA10C932A91130F00354196 /* UserTypeSelectionView.swift */,
+				BE9BA9562A91474C00AEB993 /* SettingView.swift */,
 				BEA10C972A91139500354196 /* UserTypeCell.swift */,
 				BEA10C8F2A910F4400354196 /* LanguageCell.swift */,
 			);
@@ -302,6 +305,7 @@
 				959862342A910CDE0047E1D5 /* DriverCommandViewModel.swift in Sources */,
 				BEA10C8C2A90A2F000354196 /* Color.swift in Sources */,
 				BE0B019F2A907C9500FA9320 /* PapagoResponse.swift in Sources */,
+				BE9BA9572A91474C00AEB993 /* SettingView.swift in Sources */,
 				BEA10C982A91139500354196 /* UserTypeCell.swift in Sources */,
 				BEA10C962A91133500354196 /* UserType.swift in Sources */,
 				BEA10C9A2A911F6500354196 /* PirmaryButtonStyle.swift in Sources */,
