@@ -43,6 +43,7 @@ struct UserTypeSelectionView: View {
                 Text("다음")
                     .primaryButtonStyle(isSelected: isTypeSelected)
             }
+            .disabled(!isTypeSelected)
         }
 
     }
