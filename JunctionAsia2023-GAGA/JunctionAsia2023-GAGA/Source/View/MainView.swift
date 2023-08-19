@@ -16,34 +16,36 @@ struct MainView: View {
     @State private var savedText = ""
     
     var body: some View {
-        VStack {
-            HStack {
-                Image("logoBlack")
-                Spacer()
-                NavigationLink {
-                        SettingView()
-                    } label: {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(Color(hex: "646F7C"))
-                    }
-            }
-            .padding()
-            
-            VStack(spacing: 16)  {
-                VStack {
-                    Text("\(mcSession.connectedPeers.count) is connected")
+        NavigationStack{
+            VStack {
+                HStack {
+                    Image("logoBlack")
+                    Spacer()
+                    NavigationLink {
+                            SettingView()
+                        } label: {
+                            Image(systemName: "gearshape.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color(hex: "646F7C"))
+                        }
                 }
-                TTSComponentView
-                    .onTapGesture {
-                        showTTSModal = true
+                .padding()
+                
+                VStack(spacing: 16)  {
+                    VStack {
+                        Text("\(mcSession.connectedPeers.count) is connected")
                     }
-                STTComponentView
-                    .onTapGesture {
-                        showSTTModal = true
-                    }
+                    TTSComponentView
+                        .onTapGesture {
+                            showTTSModal = true
+                        }
+                    STTComponentView
+                        .onTapGesture {
+                            showSTTModal = true
+                        }
+                }
+                Spacer()
             }
-            Spacer()
         }
         .onChange(of: mcSession.currentText, perform: { receivecTextFromMC in
             if savedText != receivecTextFromMC {
