@@ -16,6 +16,7 @@
 		9598622E2A909D060047E1D5 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9598622D2A909D060047E1D5 /* ColorExtension.swift */; };
 		959862322A9109370047E1D5 /* CommandTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862312A9109370047E1D5 /* CommandTestView.swift */; };
 		959862342A910CDE0047E1D5 /* DriverCommandViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862332A910CDE0047E1D5 /* DriverCommandViewModel.swift */; };
+		959862392A9158E10047E1D5 /* ReceivedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862382A9158E10047E1D5 /* ReceivedTextView.swift */; };
 		95FD82BE2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */; };
 		95FD82C02A8F82B000C5667E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82BF2A8F82B000C5667E /* ContentView.swift */; };
 		95FD82C22A8F82B200C5667E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95FD82C12A8F82B200C5667E /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		9598622D2A909D060047E1D5 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		959862312A9109370047E1D5 /* CommandTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandTestView.swift; sourceTree = "<group>"; };
 		959862332A910CDE0047E1D5 /* DriverCommandViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverCommandViewModel.swift; sourceTree = "<group>"; };
+		959862382A9158E10047E1D5 /* ReceivedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTextView.swift; sourceTree = "<group>"; };
 		95FD82BA2A8F82B000C5667E /* JunctionAsia2023-GAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JunctionAsia2023-GAGA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JunctionAsia2023_GAGAApp.swift; sourceTree = "<group>"; };
 		95FD82BF2A8F82B000C5667E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,17 +135,16 @@
 		959862172A9058C70047E1D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9598621E2A905D6B0047E1D5 /* MCTestView.swift */,
-				959862252A90625B0047E1D5 /* STTTestView.swift */,
+				959862372A9154C00047E1D5 /* Test */,
 				99AE04BC2A90A1F800B66B99 /* TTSView.swift */,
 				959862292A909C8B0047E1D5 /* STTView.swift */,
 				BE0B01A22A909F1500FA9320 /* UserLanguageSelectionView.swift */,
 				99AC33332A913EB500702192 /* MainView.swift */,
-				959862312A9109370047E1D5 /* CommandTestView.swift */,
 				BEA10C9B2A9121E100354196 /* OnBoardingView.swift */,
 				BEA10C932A91130F00354196 /* UserTypeSelectionView.swift */,
 				BEA10C972A91139500354196 /* UserTypeCell.swift */,
 				BEA10C8F2A910F4400354196 /* LanguageCell.swift */,
+				959862382A9158E10047E1D5 /* ReceivedTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,6 +174,16 @@
 				9598622D2A909D060047E1D5 /* ColorExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		959862372A9154C00047E1D5 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				9598621E2A905D6B0047E1D5 /* MCTestView.swift */,
+				959862252A90625B0047E1D5 /* STTTestView.swift */,
+				959862312A9109370047E1D5 /* CommandTestView.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		95FD82B12A8F82B000C5667E = {
@@ -285,6 +296,7 @@
 			files = (
 				95FD82CA2A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld in Sources */,
 				99AC33342A913EB500702192 /* MainView.swift in Sources */,
+				959862392A9158E10047E1D5 /* ReceivedTextView.swift in Sources */,
 				BEA10C902A910F4400354196 /* LanguageCell.swift in Sources */,
 				95FD82C72A8F82B200C5667E /* Persistence.swift in Sources */,
 				9598622A2A909C8B0047E1D5 /* STTView.swift in Sources */,
