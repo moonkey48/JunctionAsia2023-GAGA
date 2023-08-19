@@ -15,7 +15,8 @@ struct JunctionAsia2023_GAGAApp: App {
         WindowGroup {
 //            ContentView()
 //            TTSView()
-            MainView()
+            OnBoardingView()
+
         }
     }
 }
