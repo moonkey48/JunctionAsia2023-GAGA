@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct STTTestView: View {
-    @ObservedObject private var speachData = SpeachData.shared
+    @ObservedObject private var speachData = SpeechData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
     @State private var isRecording = false
     
     var body: some View {
         VStack {
-            Text(speachData.speachText)
+            Text(speachData.speechText)
             Button {
                 speechRecognizer.stopTranscribing()
             } label: {

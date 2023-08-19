@@ -18,10 +18,12 @@ enum TranslationError: Error {
 }
 
 final class LanguageModel: ObservableObject {
+    static let shared = LanguageModel()
+    private init(){}
     // 여행자 언어
-    private let sourceLangType: String = "en"
+    private let sourceLangType: String = "ko"
     // 운전자 언어
-    private let targetLangType: String = "ko"
+    private let targetLangType: String = "en"
     
     private var id: String? {
         guard let url = Bundle.main.url(forResource: "PapagoAPI", withExtension: "plist") else { return nil }
@@ -69,6 +71,7 @@ final class LanguageModel: ObservableObject {
         guard let papagoReseponse = try? JSONDecoder().decode(PapagoResponse.self, from: data) else {
             throw TranslationError.decodingError }
         DispatchQueue.main.async { [unowned self] in
+            print(papagoReseponse.message.result.translatedText)
             self.translatedText = papagoReseponse.message.result.translatedText
         }
     }
