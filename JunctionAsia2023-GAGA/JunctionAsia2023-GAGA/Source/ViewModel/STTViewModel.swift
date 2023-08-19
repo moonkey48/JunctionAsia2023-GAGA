@@ -74,6 +74,12 @@ actor SpeechRecognizer: ObservableObject {
         }
     }
     
+    @MainActor func resetTranscribeMessage() {
+        Task {
+            transcript = ""
+        }
+    }
+    
     @MainActor func startTranscribing() {
         Task {
             await transcribe()
@@ -167,9 +173,10 @@ actor SpeechRecognizer: ObservableObject {
     }
     
     
-    nonisolated private func transcribe(_ message: String) {
+    nonisolated func transcribe(_ message: String) {
         Task { @MainActor in
             transcript = message
+            
         }
     }
     nonisolated private func transcribe(_ error: Error) {

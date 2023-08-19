@@ -154,15 +154,16 @@ actor CommandRecognizer: ObservableObject {
     }
     private func setResult(result: SFSpeechRecognitionResult?) {
         let receivedFinalResult = result?.bestTranscription.formattedString
-        if receivedFinalResult == "Start" {
+        let seperated = receivedFinalResult?.split(separator: " ").last
+        if seperated == "start" || seperated == "Start" || seperated == "starts"   {
             driverCommandViewModel.driverCommand = .start
-        } else if receivedFinalResult == "Reset" {
+        } else if seperated == "reset" || seperated == "Reset" {
             driverCommandViewModel.driverCommand = .reset
-        } else if receivedFinalResult == "Restart" {
+        } else if seperated == "restart" || seperated == "Restart" {
             driverCommandViewModel.driverCommand = .restart
-        } else if receivedFinalResult == "Close" {
+        } else if seperated == "close" || seperated == "Close" {
             driverCommandViewModel.driverCommand = .close
-        } else if receivedFinalResult == "답장" {
+        } else if seperated == "답장" {
             driverCommandViewModel.driverCommand = .start
         } else {
             driverCommandViewModel.driverCommand = .notDefined

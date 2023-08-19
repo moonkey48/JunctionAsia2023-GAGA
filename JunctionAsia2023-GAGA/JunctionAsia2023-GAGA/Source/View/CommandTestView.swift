@@ -29,6 +29,7 @@ struct CommandTestView: View {
             }
         })
         .onChange(of: driverCommandViewModel.driverCommand) { newCommand in
+        
             switch newCommand {
             case .start:
                 showModal = true

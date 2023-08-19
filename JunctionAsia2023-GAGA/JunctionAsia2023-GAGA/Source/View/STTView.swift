@@ -97,34 +97,52 @@ struct STTView: View {
             startRecognize()
             circleAnimationStart()
         }
-        .onChange(of: speachData.speachText) { newValue in
+        .onChange(of: speachData.speachText) { _ in
             self.time = 0
         }
         .onChange(of: time) { newValue in
-            if time > 5 {
+            if newValue > 5 {
                 startRecognizeCommand()
             }
         }
-        .onChange(of: driverCommandViewModel.driverCommand) { newCommand in
-            print(newCommand.rawValue)
+        .onChange(of: driverCommandViewModel.driverCommand) { command in
+            print(command.rawValue)
+//            handleCommand(newCommand)
         }
     }
     
     private func startRecognizeCommand(){
         print("stop recognizing and start command")
-        speechRecognizer.stopTranscribing()
+        speechRecognizer.resetTranscript()
         timer?.invalidate()
         driverRecognizer.startTranscribing()
-        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { timer in
-            if driverCommandViewModel.driverCommand == .notDefined {
-                driverRecognizer.stopTranscribing()
-                driverRecognizer.resetTranscript()
-                driverCommandViewModel.driverCommand = .notDefined
-                driverRecognizer.startTranscribing()
-            } else {
-                // Mark: Send Multipeer Connectivity
-            }
+//        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { _ in
+//            driverRecognizer.resetTranscript()
+//            driverCommandViewModel.driverCommand = .notDefined
+//            driverRecognizer.startTranscribing()
+//        }
+    }
+    
+    private func handleCommand(_ command: DriverCommand){
+        print(command.rawValue)
+        switch command {
+        case .start:
+            startRecognize()
+        case .reset:
+            startRecognize()
+        case .restart:
+            startRecognize()
+        case .close:
+            endRecognize()
+        case .notDefined:
+            return
         }
+    }
+    private func endRecognize(){
+        timer?.invalidate()
+        driverRecognizer.resetTranscript()
+        driverCommandViewModel.driverCommand = .notDefined
+        speechRecognizer.resetTranscript()
     }
     
     private func startRecognize(){
@@ -134,10 +152,8 @@ struct STTView: View {
             self.time += 1
         }
         // stop driver command
-        driverRecognizer.stopTranscribing()
         driverRecognizer.resetTranscript()
         driverCommandViewModel.driverCommand = .notDefined
-        driverRecognizer.startTranscribing()
         
         // start recognize
         speechRecognizer.startTranscribing()
