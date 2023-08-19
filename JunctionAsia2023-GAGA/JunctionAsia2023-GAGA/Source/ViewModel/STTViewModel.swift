@@ -9,8 +9,22 @@ import AVFoundation
 import Speech
 import SwiftUI
 
+enum LocaleSupport: String {
+    case korea = "ko_KR"
+    case english = "en-US"
+}
+
+final class SpeachData: ObservableObject {
+    static let shared = SpeachData()
+    private init(){}
+    
+    @Published var speachText = ""
+    @Published var currentLocale: LocaleSupport = .korea
+}
+
 
 actor SpeechRecognizer: ObservableObject {
+    let speachData = SpeachData.shared
     enum RecognizerError: Error {
         case nilRecognizer
         case notAuthorizedToRecognize
@@ -26,7 +40,6 @@ actor SpeechRecognizer: ObservableObject {
             }
         }
     }
-    
     @MainActor var transcript: String = ""
     
     private var audioEngine: AVAudioEngine?
@@ -39,7 +52,10 @@ actor SpeechRecognizer: ObservableObject {
      requests access to the speech recognizer and the microphone.
      */
     init() {
-        recognizer = SFSpeechRecognizer()
+        
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: speachData.currentLocale.rawValue))
+        
+        
         guard recognizer != nil else {
             transcribe(RecognizerError.nilRecognizer)
             return
@@ -94,6 +110,7 @@ actor SpeechRecognizer: ObservableObject {
             self.audioEngine = audioEngine
             self.request = request
             self.task = recognizer.recognitionTask(with: request, resultHandler: { [weak self] result, error in
+                self?.setResult(result: result)
                 self?.recognitionHandler(audioEngine: audioEngine, result: result, error: error)
             })
         } catch {
@@ -130,6 +147,10 @@ actor SpeechRecognizer: ObservableObject {
         try audioEngine.start()
         
         return (audioEngine, request)
+    }
+    private func setResult(result: SFSpeechRecognitionResult?) {
+        let receivedFinalResult = result?.bestTranscription.formattedString
+        speachData.speachText = receivedFinalResult ?? "not finded"
     }
     
     nonisolated private func recognitionHandler(audioEngine: AVAudioEngine, result: SFSpeechRecognitionResult?, error: Error?) {
