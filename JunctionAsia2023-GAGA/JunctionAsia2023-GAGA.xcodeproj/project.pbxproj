@@ -137,16 +137,13 @@
 		959862172A9058C70047E1D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9598623A2A9169510047E1D5 /* onboarding */,
 				959862372A9154C00047E1D5 /* Test */,
 				99AE04BC2A90A1F800B66B99 /* TTSView.swift */,
 				959862292A909C8B0047E1D5 /* STTView.swift */,
-				BE0B01A22A909F1500FA9320 /* UserLanguageSelectionView.swift */,
 				99AC33332A913EB500702192 /* MainView.swift */,
 				BEA10C9B2A9121E100354196 /* OnBoardingView.swift */,
-				BEA10C932A91130F00354196 /* UserTypeSelectionView.swift */,
 				BE9BA9562A91474C00AEB993 /* SettingView.swift */,
-				BEA10C972A91139500354196 /* UserTypeCell.swift */,
-				BEA10C8F2A910F4400354196 /* LanguageCell.swift */,
 				959862382A9158E10047E1D5 /* ReceivedTextView.swift */,
 			);
 			path = View;
@@ -187,6 +184,17 @@
 				959862312A9109370047E1D5 /* CommandTestView.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		9598623A2A9169510047E1D5 /* onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				BE0B01A22A909F1500FA9320 /* UserLanguageSelectionView.swift */,
+				BEA10C932A91130F00354196 /* UserTypeSelectionView.swift */,
+				BEA10C8F2A910F4400354196 /* LanguageCell.swift */,
+				BEA10C972A91139500354196 /* UserTypeCell.swift */,
+			);
+			path = onboarding;
 			sourceTree = "<group>";
 		};
 		95FD82B12A8F82B000C5667E = {

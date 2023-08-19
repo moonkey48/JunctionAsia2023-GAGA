@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
+    @AppStorage("userType") var userType = "Unselected"
     @StateObject private var mcSession = TextMultipeerSession.shared
+    @StateObject private var driverRecognizer = CommandRecognizer()
     @State private var showTTSModal = false
     @State private var showSTTModal = false
     @State private var isTextReceived = false
@@ -35,10 +37,12 @@ struct MainView: View {
                     VStack {
                         Text("\(mcSession.connectedPeers.count) is connected")
                     }
-                    TTSComponentView
-                        .onTapGesture {
-                            showTTSModal = true
-                        }
+                    if userType == "Passenger" {
+                        TTSComponentView
+                            .onTapGesture {
+                                showTTSModal = true
+                            }
+                    }
                     STTComponentView
                         .onTapGesture {
                             showSTTModal = true
@@ -59,7 +63,8 @@ struct MainView: View {
                 .presentationDragIndicator(.visible)
         })
         .sheet(isPresented: $showSTTModal) {
-            STTView(showSTTModal: $showSTTModal)
+            
+            STTView(showSTTModal: $showSTTModal,driverRecognizer: driverRecognizer)
         }
         .sheet(isPresented: $showTTSModal) {
             TTSView(showTTSModal: $showTTSModal)
@@ -119,7 +124,7 @@ extension MainView {
         }
         .padding(30)
         .frame(width: 358, height: 254)
-        .background(Color(hex: "0B033F"))
+        .background(userType == "Pasenger" ? Color(hex: "0B033F") : Color(hex: "6E65F4"))
         .cornerRadius(16)
     }
 }

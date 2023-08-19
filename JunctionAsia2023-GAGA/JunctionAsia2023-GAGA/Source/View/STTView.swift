@@ -25,7 +25,7 @@ struct STTView: View {
     @ObservedObject private var papagoModel = LanguageModel.shared
     @ObservedObject private var speechData = SpeechData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
-    @StateObject var driverRecognizer = CommandRecognizer()
+    @ObservedObject var driverRecognizer: CommandRecognizer
     @ObservedObject private var driverCommandViewModel = DriverCommandViewModel.shared
     @State private var isRecording = false
     @State private var smallCircleSize: CGFloat = 0.8
@@ -221,8 +221,9 @@ extension STTView {
 
 struct STTPreview: View {
     @State private var showSTTModal = false
+    @StateObject private var driverRecognizer = CommandRecognizer()
     var body: some View {
-        STTView(showSTTModal: $showSTTModal)
+        STTView(showSTTModal: $showSTTModal, driverRecognizer: driverRecognizer)
     }
 }
 
