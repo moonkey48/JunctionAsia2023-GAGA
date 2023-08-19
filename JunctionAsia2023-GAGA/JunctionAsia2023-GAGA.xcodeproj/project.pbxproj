@@ -36,6 +36,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		959862142A90589B0047E1D5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				95FD82C12A8F82B200C5667E /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		959862152A9058A30047E1D5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				959862182A9058CB0047E1D5 /* ViewModel */,
+				959862172A9058C70047E1D5 /* View */,
+				959862162A9058BE0047E1D5 /* Model */,
+				95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */,
+				95FD82BF2A8F82B000C5667E /* ContentView.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		959862162A9058BE0047E1D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				95FD82C62A8F82B200C5667E /* Persistence.swift */,
+				95FD82C82A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		959862172A9058C70047E1D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		959862182A9058CB0047E1D5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		95FD82B12A8F82B000C5667E = {
 			isa = PBXGroup;
 			children = (
@@ -55,11 +98,8 @@
 		95FD82BC2A8F82B000C5667E /* JunctionAsia2023-GAGA */ = {
 			isa = PBXGroup;
 			children = (
-				95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */,
-				95FD82BF2A8F82B000C5667E /* ContentView.swift */,
-				95FD82C12A8F82B200C5667E /* Assets.xcassets */,
-				95FD82C62A8F82B200C5667E /* Persistence.swift */,
-				95FD82C82A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld */,
+				959862152A9058A30047E1D5 /* Source */,
+				959862142A90589B0047E1D5 /* Resource */,
 				95FD82C32A8F82B200C5667E /* Preview Content */,
 			);
 			path = "JunctionAsia2023-GAGA";
