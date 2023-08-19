@@ -12,7 +12,7 @@ struct LanguageCell: View {
     private var isSelected: Bool {
         return userLanguage == country.language
     }
-    @AppStorage("userLanguage") var userLanguage: String = "Unselected"
+    @AppStorage("userLanguage") var userLanguage = "Unselected"
     
     var body: some View {
         HStack {

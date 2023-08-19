@@ -8,7 +8,7 @@
 import Foundation
 
 enum UserType: String, CaseIterable {
-    case tourist, driver
+    case tourist, driver, unknown
     
     var text: String { self.rawValue }
     var imageString: String {
@@ -17,6 +17,8 @@ enum UserType: String, CaseIterable {
             return "👨🏻‍✈️"
         case .tourist:
             return "🧑🏻‍"
+        case .unknown:
+            return "Unknown"
         }
     }
 }

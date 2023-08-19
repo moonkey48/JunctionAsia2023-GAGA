@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct UserLanguageSelectionView: View {
-    
     private let title = "여러분의 언어를\n선택해주세요!"
+    @Binding var selectedTabTag: Int
+    
+    private var isLanguageSelected: Bool {
+        userLanguage != "Unselected"
+    }
+    @AppStorage("userLanguage") var userLanguage = "Unselected"
     
     var body: some View {
         VStack {
@@ -22,9 +27,21 @@ struct UserLanguageSelectionView: View {
             .padding(.horizontal)
             
             ForEach(Country.allCases, id: \.self) { country in
-                LanguageCell(country: country)
+                if country != .unknown {
+                    LanguageCell(country: country)
+                }
             }
             .padding(.horizontal)
+            .padding(.top, 16)
+            
+            Spacer()
+            
+            Button {
+                selectedTabTag = 1
+            } label: {
+                Text("다음")
+                    .primaryButtonStyle(isSelected: isLanguageSelected)
+            }
         }
 
     }
@@ -33,6 +50,6 @@ struct UserLanguageSelectionView: View {
 
 struct UserLanguageSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        UserLanguageSelectionView()
+        UserLanguageSelectionView(selectedTabTag: .constant(1))
     }
 }

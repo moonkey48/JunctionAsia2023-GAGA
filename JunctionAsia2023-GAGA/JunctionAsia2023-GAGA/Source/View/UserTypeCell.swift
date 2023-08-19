@@ -25,7 +25,6 @@ struct UserTypeCell: View {
                     Circle()
                         .stroke(Color.custom(.gray200), lineWidth: 2)
                 }
-//                .padding(.leading, 24)
             
             Text(userType.text)
                 .font(.bodySemibold)
