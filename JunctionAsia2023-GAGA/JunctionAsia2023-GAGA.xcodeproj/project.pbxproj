@@ -67,7 +67,6 @@
 				959862162A9058BE0047E1D5 /* Model */,
 				95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */,
 				95FD82BF2A8F82B000C5667E /* ContentView.swift */,
-				99F8057F2A9067CE0081D332 /* TTSTest.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -84,6 +83,7 @@
 		959862172A9058C70047E1D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				99F8057F2A9067CE0081D332 /* TTSTest.swift */,
 				959862192A905B080047E1D5 /* DefaultView.swift */,
 				9598621E2A905D6B0047E1D5 /* MCTestView.swift */,
 				959862252A90625B0047E1D5 /* STTTestView.swift */,
