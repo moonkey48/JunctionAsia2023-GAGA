@@ -5,11 +5,13 @@
 //  Created by Seungui Moon on 2023/08/20.
 //
 
+import AVFoundation
 import SwiftUI
 
 struct ReceivedTextView: View {
     @ObservedObject var mcSession = TextMultipeerSession.shared
     @Binding var receivedText: String
+    let synthesizer = AVSpeechSynthesizer()
     var body: some View {
         VStack(alignment: .leading) {
             Text(receivedText)
@@ -21,7 +23,37 @@ struct ReceivedTextView: View {
                 answerButton
             }
         }
+        .onAppear {
+            handleTTS(text: receivedText)
+        }
+        .onChange(of: receivedText, perform: { newValue in
+            handleTTS(text: newValue)
+        })
+        
         .padding()
+    }
+    private func handleTTS(text: String){
+        // 현재 음성 출력 중인 내용 중단
+        synthesizer.stopSpeaking(at: .immediate)
+                        
+        // 음성 출력할 내용을 포함한 AVSpeechUtterance 생성
+        let utterance = AVSpeechUtterance(string: text)
+                        
+        // 사용자의 선호 언어 가져오기
+        let preferredLanguage = Locale.preferredLanguages.first ?? "en"
+                        
+        // 선호 언어에 따라 TTS 음성 설정
+        if preferredLanguage.contains("ko") {
+            utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+        } else {
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        }
+                        
+        // 음성 출력 시작
+        synthesizer.speak(utterance)
+                        
+        // 콘솔에 메시지 출력하여 TTS가 동작 중임을 확인 (시뮬레이터용)
+        print("Read Text: \(text)")
     }
 }
 extension ReceivedTextView {
