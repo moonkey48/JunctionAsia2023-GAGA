@@ -13,8 +13,9 @@ struct JunctionAsia2023_GAGAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            ContentView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            TTSTest()
         }
     }
 }
