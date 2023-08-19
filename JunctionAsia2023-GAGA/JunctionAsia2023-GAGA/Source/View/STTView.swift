@@ -20,17 +20,20 @@ let guideSentences = [
 ]
 
 struct STTView: View {
-    @ObservedObject private var speachData = SpeechData.shared
+    @StateObject private var textSession = TextMultipeerSession()
+    @ObservedObject private var papagoModel = LanguageModel.shared
+    @ObservedObject private var speechData = SpeechData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
     @StateObject var driverRecognizer = CommandRecognizer()
     @ObservedObject private var driverCommandViewModel = DriverCommandViewModel.shared
     @State private var isRecording = false
     @State private var smallCircleSize: CGFloat = 0.8
     @State private var bigCircleSize: CGFloat = 1
-    @State private var sttState: STTState = .listening
+    @State private var sttState: STTState = .loading
     @State private var selectedGuide = guideSentences.randomElement() ?? ""
     @State private var time = 0
     @State private var timer: Timer?
+    @State private var recognizedText = ""
     
     var body: some View {
         ZStack{
@@ -51,29 +54,41 @@ struct STTView: View {
             }
             
             VStack {
+                if !textSession.currentText.isEmpty {
+                    Text(textSession.currentText)
+                        .foregroundColor(.white)
+                }
                 Spacer()
                     .frame(height: 100)
                 Text("\(time)")
                     .foregroundColor(.white)
                 HStack {
-                    Text(speachData.speachText.isEmpty ? "말씀하시면 텍스트가 입력됩니다. " : speachData.speachText)
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .font(.system(size: 24))
+                    if recognizedText.isEmpty {
+                        Text(speechData.speechText.isEmpty ? "말씀하시면 텍스트가 입력됩니다. " : speechData.speechText)
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .font(.system(size: 24))
+                    } else {
+                        Text(recognizedText)
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .font(.system(size: 24))
+                    }
                     Spacer()
                 }
                 .padding()
                 Spacer()
-                Text(selectedGuide)
-                    .foregroundColor(.white)
-                    .font(.system(size: 18))
+                if sttState != .done {
+                    Text(selectedGuide)
+                        .foregroundColor(.white)
+                        .font(.system(size: 18))
+                }
                 Spacer()
                     .frame(height: 240)
                 switch sttState {
                 case .listening:
                     Button {
-                        speechRecognizer.resetTranscript()
-                        speechRecognizer.startTranscribing()
+                        startRecognize()
                     } label: {
                         stopButton
                     }
@@ -97,30 +112,41 @@ struct STTView: View {
             startRecognize()
             circleAnimationStart()
         }
-        .onChange(of: speachData.speachText) { _ in
+        .onChange(of: speechData.speechText) { _ in
             self.time = 0
         }
         .onChange(of: time) { newValue in
-            if newValue > 5 {
+            if newValue > 2 {
                 startRecognizeCommand()
+                sttState = .done
+                
             }
         }
         .onChange(of: driverCommandViewModel.driverCommand) { command in
-            print(command.rawValue)
-//            handleCommand(newCommand)
+            handleCommand(command)
+        }
+        .onChange(of: papagoModel.translatedText) { translatedText in
+            textSession.send(text: translatedText)
+        }
+    }
+    
+    private func translate(value: String){
+        Task {
+            do {
+                try await papagoModel.fetchTranslation(with: value)
+            } catch {
+                print("error on papago")
+            }
         }
     }
     
     private func startRecognizeCommand(){
+        recognizedText = speechData.speechText
+        translate(value: speechData.speechText)
         print("stop recognizing and start command")
         speechRecognizer.resetTranscript()
         timer?.invalidate()
         driverRecognizer.startTranscribing()
-//        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { _ in
-//            driverRecognizer.resetTranscript()
-//            driverCommandViewModel.driverCommand = .notDefined
-//            driverRecognizer.startTranscribing()
-//        }
     }
     
     private func handleCommand(_ command: DriverCommand){
@@ -147,6 +173,8 @@ struct STTView: View {
     
     private func startRecognize(){
         // timer setting
+        sttState = .loading
+        recognizedText = ""
         time = 0
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             self.time += 1

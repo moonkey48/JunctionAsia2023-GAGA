@@ -18,7 +18,7 @@ final class SpeechData: ObservableObject {
     static let shared = SpeechData()
     private init(){}
     
-    @Published var speachText = ""
+    @Published var speechText = ""
     @Published var currentLocale: LocaleSupport = .korea
 }
 
@@ -155,7 +155,7 @@ actor SpeechRecognizer: ObservableObject {
     }
     private func setResult(result: SFSpeechRecognitionResult?) {
         let receivedFinalResult = result?.bestTranscription.formattedString
-        speachData.speachText = receivedFinalResult ?? "not finded"
+        speachData.speechText = receivedFinalResult ?? ""
     }
     
     nonisolated private func recognitionHandler(audioEngine: AVAudioEngine, result: SFSpeechRecognitionResult?, error: Error?) {

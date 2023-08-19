@@ -14,7 +14,7 @@ struct STTTestView: View {
     
     var body: some View {
         VStack {
-            Text(speachData.speachText)
+            Text(speachData.speechText)
             Button {
                 speechRecognizer.stopTranscribing()
             } label: {
