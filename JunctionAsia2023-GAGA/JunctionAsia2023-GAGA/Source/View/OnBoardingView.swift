@@ -35,6 +35,7 @@ struct OnBoardingView: View {
                 .padding(.top, 5)
             , alignment: .top
         )
+        // 유저 타입 설정되면 OnBoardingView 끝
         .onChange(of: selectedTabTag) { tag in
             if tag == 2 {
                 dismiss()

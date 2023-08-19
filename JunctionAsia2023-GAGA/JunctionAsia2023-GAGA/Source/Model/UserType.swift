@@ -8,17 +8,15 @@
 import Foundation
 
 enum UserType: String, CaseIterable {
-    case tourist, driver, unknown
+    case passenger, driver
     
-    var text: String { self.rawValue }
+    var text: String { self.rawValue.capitalized }
     var imageString: String {
         switch self {
         case .driver:
             return "👨🏻‍✈️"
-        case .tourist:
+        case .passenger:
             return "🧑🏻‍"
-        case .unknown:
-            return "Unknown"
         }
     }
 }

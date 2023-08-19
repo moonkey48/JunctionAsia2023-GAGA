@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserLanguageSelectionView: View {
-    private let title = "여러분의 언어를\n선택해주세요!"
+    private let title = "Please choose\nyour language!"
     @Binding var selectedTabTag: Int
     
     private var isLanguageSelected: Bool {
@@ -25,10 +25,12 @@ struct UserLanguageSelectionView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            
-            ForEach(Country.allCases, id: \.self) { country in
-                if country != .unknown {
-                    LanguageCell(country: country)
+
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(Country.allCases, id: \.self) { country in
+                        LanguageCell(country: country)
+                    }
                 }
             }
             .padding(.horizontal)
@@ -37,7 +39,9 @@ struct UserLanguageSelectionView: View {
             Spacer()
             
             Button {
-                selectedTabTag = 1
+                withAnimation {
+                    selectedTabTag = 1
+                }
             } label: {
                 Text("다음")
                     .primaryButtonStyle(isSelected: isLanguageSelected)

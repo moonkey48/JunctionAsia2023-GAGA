@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserTypeSelectionView: View {
-    private let title = "사용자 유형을\n선택해주세요!"
+    private let title = "Please select\na user type!"
     @Binding var selectedTabTag: Int
     
     private var isTypeSelected: Bool {
@@ -25,9 +25,8 @@ struct UserTypeSelectionView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            
-            ForEach(UserType.allCases, id: \.self) { userType in
-                if userType != .unknown {
+            VStack(spacing: 16) {
+                ForEach(UserType.allCases, id: \.self) { userType in
                     UserTypeCell(userType: userType)
                 }
             }
@@ -37,7 +36,9 @@ struct UserTypeSelectionView: View {
             Spacer()
             
             Button {
-                selectedTabTag = 2
+                withAnimation {
+                    selectedTabTag = 2 // MainView로 이동
+                }
             } label: {
                 Text("다음")
                     .primaryButtonStyle(isSelected: isTypeSelected)

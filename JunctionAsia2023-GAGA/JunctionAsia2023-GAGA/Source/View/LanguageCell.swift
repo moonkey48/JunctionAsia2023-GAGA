@@ -29,7 +29,7 @@ struct LanguageCell: View {
             Text(country.language)
                 .font(.bodySemibold)
                 .foregroundColor(!isSelected ? Color.custom(.gray600) : Color.custom(.white))
-                .padding(.leading, 16)
+                .padding(.leading, 8)
             
             Spacer()
             
@@ -46,8 +46,12 @@ struct LanguageCell: View {
             
         }
         .frame(height: 84)
-        .background(!isSelected ? Color.custom(.gray200) : Color.custom(.secondary))
+        .background(!isSelected ? Color.custom(.gray100) : Color.custom(.secondary))
         .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay {
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.custom(.gray200), lineWidth: 2)
+        }
         .onTapGesture {
             userLanguage = country.language
         }

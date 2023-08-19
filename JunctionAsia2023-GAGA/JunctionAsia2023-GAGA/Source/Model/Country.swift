@@ -8,7 +8,7 @@
 import Foundation
 
 enum Country: String, CaseIterable {
-    case uk, germany, france, spain, italy, unknown
+    case uk, germany, france, spain, italy, korea
     
     var flag: String {
         self.rawValue
@@ -19,15 +19,15 @@ enum Country: String, CaseIterable {
         case .uk:
             return "English"
         case .germany:
-            return "German"
+            return "Deutsch"
         case .france:
-            return "Franch"
+            return "Français"
         case .spain:
-            return "Spanish"
+            return "Español"
         case .italy:
-            return "Italian"
-        case .unknown:
-            return "Unknown"
+            return "Italiano"
+        case .korea:
+            return "한국어"
         }
     }
 }

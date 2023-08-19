@@ -26,7 +26,7 @@ extension Color {
         case .white:
             return Color(hex: "ffffff")
         case .gray100:
-            return Color(hex: "66737F")
+            return Color(hex: "F7F8F9")
         case .gray200:
             return Color(hex: "E9EBEE")
         case .gray300:
