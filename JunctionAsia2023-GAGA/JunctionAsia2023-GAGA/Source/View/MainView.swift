@@ -60,7 +60,7 @@ struct MainView: View {
             STTView(showSTTModal: $showSTTModal)
         }
         .sheet(isPresented: $showTTSModal) {
-            TTSView()
+            TTSView(showTTSModal: $showTTSModal)
         }
     }
 }
