@@ -30,6 +30,8 @@
 		BE15247B2A9067B400BF6F92 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15247A2A9067B400BF6F92 /* LanguageModel.swift */; };
 		BEA10C8C2A90A2F000354196 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C8B2A90A2F000354196 /* Color.swift */; };
 		BEA10C8E2A90A4DD00354196 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C8D2A90A4DD00354196 /* Font.swift */; };
+		BEA10C902A910F4400354196 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C8F2A910F4400354196 /* LanguageCell.swift */; };
+		BEA10C922A9111F000354196 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C912A9111F000354196 /* Country.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		BE15247A2A9067B400BF6F92 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
 		BEA10C8B2A90A2F000354196 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		BEA10C8D2A90A4DD00354196 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		BEA10C8F2A910F4400354196 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
+		BEA10C912A9111F000354196 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 		959862162A9058BE0047E1D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BEA10C912A9111F000354196 /* Country.swift */,
 				95FD82C62A8F82B200C5667E /* Persistence.swift */,
 				95FD82C82A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld */,
 				BE15247A2A9067B400BF6F92 /* LanguageModel.swift */,
@@ -118,6 +123,7 @@
 				959862292A909C8B0047E1D5 /* STTView.swift */,
 				BE0B01A22A909F1500FA9320 /* UserLanguageSelectionView.swift */,
 				9598622F2A90AFAA0047E1D5 /* LaunchScreenView.swift */,
+				BEA10C8F2A910F4400354196 /* LanguageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD82CA2A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld in Sources */,
+				BEA10C902A910F4400354196 /* LanguageCell.swift in Sources */,
 				95FD82C72A8F82B200C5667E /* Persistence.swift in Sources */,
 				9598622A2A909C8B0047E1D5 /* STTView.swift in Sources */,
 				BEA10C8E2A90A4DD00354196 /* Font.swift in Sources */,
@@ -264,6 +271,7 @@
 				95FD82C02A8F82B000C5667E /* ContentView.swift in Sources */,
 				BE0B01A32A909F1500FA9320 /* UserLanguageSelectionView.swift in Sources */,
 				95FD82BE2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift in Sources */,
+				BEA10C922A9111F000354196 /* Country.swift in Sources */,
 				959862212A905DC10047E1D5 /* TextMultipeerSession.swift in Sources */,
 				959862262A90625B0047E1D5 /* STTTestView.swift in Sources */,
 				959862302A90AFAA0047E1D5 /* LaunchScreenView.swift in Sources */,

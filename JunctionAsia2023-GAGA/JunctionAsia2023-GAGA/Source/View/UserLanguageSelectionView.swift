@@ -8,9 +8,27 @@
 import SwiftUI
 
 struct UserLanguageSelectionView: View {
+    
+    private let title = "여러분의 언어를\n선택해주세요!"
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                Text(title)
+                    .font(.titleDefault)
+                    .border(.background)
+                Spacer()
+            }
+            .padding(.horizontal)
+            
+            ForEach(Country.allCases, id: \.self) { country in
+                LanguageCell(country: country)
+            }
+            .padding(.horizontal)
+        }
+
     }
+    
 }
 
 struct UserLanguageSelectionView_Previews: PreviewProvider {
