@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject private var mcSession = TextMultipeerSession.shared
     @State private var showTTSModal = false
     @State private var showSTTModal = false
-    @State private var isTextReceived = false
+    @State private var isTextReceived = true
     
     var body: some View {
         VStack {
@@ -37,15 +38,15 @@ struct MainView: View {
         }
         .sheet(isPresented: $isTextReceived, content: {
             ReceivedTextView()
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
         })
         .sheet(isPresented: $showSTTModal) {
-            STTView()
+            STTView(showSTTModal: $showSTTModal)
         }
         .sheet(isPresented: $showTTSModal) {
             TTSView()
         }
-       
-        
     }
 }
 
