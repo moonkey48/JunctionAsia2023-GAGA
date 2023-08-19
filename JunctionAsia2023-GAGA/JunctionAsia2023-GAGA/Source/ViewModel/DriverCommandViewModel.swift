@@ -154,7 +154,6 @@ actor CommandRecognizer: ObservableObject {
     }
     private func setResult(result: SFSpeechRecognitionResult?) {
         let receivedFinalResult = result?.bestTranscription.formattedString
-        print(receivedFinalResult)
         if receivedFinalResult == "Start" {
             driverCommandViewModel.driverCommand = .start
         } else if receivedFinalResult == "Reset" {
@@ -163,6 +162,8 @@ actor CommandRecognizer: ObservableObject {
             driverCommandViewModel.driverCommand = .restart
         } else if receivedFinalResult == "Close" {
             driverCommandViewModel.driverCommand = .close
+        } else if receivedFinalResult == "답장" {
+            driverCommandViewModel.driverCommand = .start
         } else {
             driverCommandViewModel.driverCommand = .notDefined
         }

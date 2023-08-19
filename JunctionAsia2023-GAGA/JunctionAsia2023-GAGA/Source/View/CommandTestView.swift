@@ -29,7 +29,6 @@ struct CommandTestView: View {
             }
         })
         .onChange(of: driverCommandViewModel.driverCommand) { newCommand in
-            print(newCommand)
             switch newCommand {
             case .start:
                 showModal = true
@@ -50,7 +49,6 @@ struct CommandTestView: View {
         }
         .onAppear {
             Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { timer in
-                print("reset")
                 commandRecognizer.stopTranscribing()
                 commandRecognizer.resetTranscript()
                 driverCommandViewModel.driverCommand = .notDefined

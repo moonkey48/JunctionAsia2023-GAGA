@@ -22,11 +22,15 @@ let guideSentences = [
 struct STTView: View {
     @ObservedObject private var speachData = SpeechData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
+    @StateObject var driverRecognizer = CommandRecognizer()
+    @ObservedObject private var driverCommandViewModel = DriverCommandViewModel.shared
     @State private var isRecording = false
     @State private var smallCircleSize: CGFloat = 0.8
     @State private var bigCircleSize: CGFloat = 1
     @State private var sttState: STTState = .listening
     @State private var selectedGuide = guideSentences.randomElement() ?? ""
+    @State private var time = 0
+    @State private var timer: Timer?
     
     var body: some View {
         ZStack{
@@ -49,6 +53,8 @@ struct STTView: View {
             VStack {
                 Spacer()
                     .frame(height: 100)
+                Text("\(time)")
+                    .foregroundColor(.white)
                 HStack {
                     Text(speachData.speachText.isEmpty ? "말씀하시면 텍스트가 입력됩니다. " : speachData.speachText)
                         .foregroundColor(.white)
@@ -76,10 +82,10 @@ struct STTView: View {
                 case .done:
                     HStack {
                         STTButtonComponentView(contentText: "전달하기") {
-                            
+                            // send data to mc
                         }
                         STTButtonComponentView(contentText: "다시녹음", buttonType: .reTranscribing) {
-                            
+                            // restart recognize
                         }
                     }
                     .padding()
@@ -88,11 +94,56 @@ struct STTView: View {
             
         }
         .onAppear {
-            speechRecognizer.startTranscribing()
+            startRecognize()
             circleAnimationStart()
         }
+        .onChange(of: speachData.speachText) { newValue in
+            self.time = 0
+        }
+        .onChange(of: time) { newValue in
+            if time > 5 {
+                startRecognizeCommand()
+            }
+        }
+        .onChange(of: driverCommandViewModel.driverCommand) { newCommand in
+            print(newCommand.rawValue)
+        }
     }
-    func circleAnimationStart(){
+    
+    private func startRecognizeCommand(){
+        print("stop recognizing and start command")
+        speechRecognizer.stopTranscribing()
+        timer?.invalidate()
+        driverRecognizer.startTranscribing()
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { timer in
+            if driverCommandViewModel.driverCommand == .notDefined {
+                driverRecognizer.stopTranscribing()
+                driverRecognizer.resetTranscript()
+                driverCommandViewModel.driverCommand = .notDefined
+                driverRecognizer.startTranscribing()
+            } else {
+                // Mark: Send Multipeer Connectivity
+            }
+        }
+    }
+    
+    private func startRecognize(){
+        // timer setting
+        time = 0
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.time += 1
+        }
+        // stop driver command
+        driverRecognizer.stopTranscribing()
+        driverRecognizer.resetTranscript()
+        driverCommandViewModel.driverCommand = .notDefined
+        driverRecognizer.startTranscribing()
+        
+        // start recognize
+        speechRecognizer.startTranscribing()
+    }
+    
+    private func circleAnimationStart(){
         withAnimation(.easeInOut(duration: 1.5).repeatForever()) {
             smallCircleSize = 0.6
         }

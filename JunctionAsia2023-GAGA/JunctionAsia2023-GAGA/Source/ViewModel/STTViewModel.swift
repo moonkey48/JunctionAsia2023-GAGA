@@ -22,7 +22,6 @@ final class SpeechData: ObservableObject {
     @Published var currentLocale: LocaleSupport = .korea
 }
 
-
 actor SpeechRecognizer: ObservableObject {
     let speachData = SpeechData.shared
     enum RecognizerError: Error {
