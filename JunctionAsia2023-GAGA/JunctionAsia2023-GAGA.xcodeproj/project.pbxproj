@@ -13,21 +13,17 @@
 		959862212A905DC10047E1D5 /* TextMultipeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862202A905DC10047E1D5 /* TextMultipeerSession.swift */; };
 		959862242A90615A0047E1D5 /* STTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862232A90615A0047E1D5 /* STTViewModel.swift */; };
 		959862262A90625B0047E1D5 /* STTTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862252A90625B0047E1D5 /* STTTestView.swift */; };
-		959862282A908B200047E1D5 /* TTSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862272A908B200047E1D5 /* TTSTest.swift */; };
 		9598622A2A909C8B0047E1D5 /* STTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862292A909C8B0047E1D5 /* STTView.swift */; };
 		9598622E2A909D060047E1D5 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9598622D2A909D060047E1D5 /* ColorExtension.swift */; };
-		959862302A90AFAA0047E1D5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9598622F2A90AFAA0047E1D5 /* LaunchScreenView.swift */; };
 		95FD82BE2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */; };
 		95FD82C02A8F82B000C5667E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82BF2A8F82B000C5667E /* ContentView.swift */; };
 		95FD82C22A8F82B200C5667E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95FD82C12A8F82B200C5667E /* Assets.xcassets */; };
 		95FD82C52A8F82B200C5667E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95FD82C42A8F82B200C5667E /* Preview Assets.xcassets */; };
 		95FD82C72A8F82B200C5667E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82C62A8F82B200C5667E /* Persistence.swift */; };
 		95FD82CA2A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82C82A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld */; };
-<<<<<<< HEAD
+		99AC33342A913EB500702192 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AC33332A913EB500702192 /* MainView.swift */; };
 		99AE04BB2A908C4500B66B99 /* TTSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AE04BA2A908C4500B66B99 /* TTSTest.swift */; };
 		99AE04BD2A90A1F800B66B99 /* TTSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AE04BC2A90A1F800B66B99 /* TTSView.swift */; };
-=======
->>>>>>> 17cd567faa3776eee416c4d27ad2cfcddd2b0c0e
 		99F805832A9080400081D332 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99F805852A9080400081D332 /* Localizable.strings */; };
 		BE0B019F2A907C9500FA9320 /* PapagoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0B019E2A907C9500FA9320 /* PapagoResponse.swift */; };
 		BE0B01A12A90800500FA9320 /* PapagoAPI.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE0B01A02A90800500FA9320 /* PapagoAPI.plist */; };
@@ -45,10 +41,8 @@
 		959862222A905F430047E1D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		959862232A90615A0047E1D5 /* STTViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTViewModel.swift; sourceTree = "<group>"; };
 		959862252A90625B0047E1D5 /* STTTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTTestView.swift; sourceTree = "<group>"; };
-		959862272A908B200047E1D5 /* TTSTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTSTest.swift; sourceTree = "<group>"; };
 		959862292A909C8B0047E1D5 /* STTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTView.swift; sourceTree = "<group>"; };
 		9598622D2A909D060047E1D5 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
-		9598622F2A90AFAA0047E1D5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		95FD82BA2A8F82B000C5667E /* JunctionAsia2023-GAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JunctionAsia2023-GAGA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JunctionAsia2023_GAGAApp.swift; sourceTree = "<group>"; };
 		95FD82BF2A8F82B000C5667E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,11 +50,9 @@
 		95FD82C42A8F82B200C5667E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		95FD82C62A8F82B200C5667E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		95FD82C92A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JunctionAsia2023_GAGA.xcdatamodel; sourceTree = "<group>"; };
-<<<<<<< HEAD
+		99AC33332A913EB500702192 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		99AE04BA2A908C4500B66B99 /* TTSTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TTSTest.swift; path = "../../../../../../../../.Trash/JunctionAsia2023-GAGA 오후 2.31.30/JunctionAsia2023-GAGA/JunctionAsia2023-GAGA/Source/View/TTSTest.swift"; sourceTree = "<group>"; };
 		99AE04BC2A90A1F800B66B99 /* TTSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSView.swift; sourceTree = "<group>"; };
-=======
->>>>>>> 17cd567faa3776eee416c4d27ad2cfcddd2b0c0e
 		99F805842A9080400081D332 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99F805862A9082240081D332 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE0B019E2A907C9500FA9320 /* PapagoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoResponse.swift; sourceTree = "<group>"; };
@@ -122,16 +114,13 @@
 			isa = PBXGroup;
 			children = (
 				959862192A905B080047E1D5 /* DefaultView.swift */,
-				959862272A908B200047E1D5 /* TTSTest.swift */,
 				9598621E2A905D6B0047E1D5 /* MCTestView.swift */,
 				959862252A90625B0047E1D5 /* STTTestView.swift */,
-
 				99AE04BA2A908C4500B66B99 /* TTSTest.swift */,
 				99AE04BC2A90A1F800B66B99 /* TTSView.swift */,
-
 				959862292A909C8B0047E1D5 /* STTView.swift */,
 				BE0B01A22A909F1500FA9320 /* UserLanguageSelectionView.swift */,
-
+				99AC33332A913EB500702192 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -271,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD82CA2A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld in Sources */,
+				99AC33342A913EB500702192 /* MainView.swift in Sources */,
 				95FD82C72A8F82B200C5667E /* Persistence.swift in Sources */,
 				9598622A2A909C8B0047E1D5 /* STTView.swift in Sources */,
 				BEA10C8E2A90A4DD00354196 /* Font.swift in Sources */,
@@ -281,20 +271,15 @@
 				95FD82BE2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift in Sources */,
 				959862212A905DC10047E1D5 /* TextMultipeerSession.swift in Sources */,
 				959862262A90625B0047E1D5 /* STTTestView.swift in Sources */,
-				959862302A90AFAA0047E1D5 /* LaunchScreenView.swift in Sources */,
 				9598621F2A905D6B0047E1D5 /* MCTestView.swift in Sources */,
 				BEA10C8C2A90A2F000354196 /* Color.swift in Sources */,
 				BE0B019F2A907C9500FA9320 /* PapagoResponse.swift in Sources */,
 				9598621A2A905B080047E1D5 /* DefaultView.swift in Sources */,
-
 				99AE04BD2A90A1F800B66B99 /* TTSView.swift in Sources */,
 				959862242A90615A0047E1D5 /* STTViewModel.swift in Sources */,
-
 				BE15247B2A9067B400BF6F92 /* LanguageModel.swift in Sources */,
 				959862242A90615A0047E1D5 /* STTViewModel.swift in Sources */,
-				959862282A908B200047E1D5 /* TTSTest.swift in Sources */,
 				9598622E2A909D060047E1D5 /* ColorExtension.swift in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
