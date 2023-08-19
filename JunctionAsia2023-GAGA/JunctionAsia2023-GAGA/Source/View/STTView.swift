@@ -12,14 +12,21 @@ enum STTState {
     case loading
     case done
 }
+let guideSentences = [
+    "기사님과 이렇게 소통해보세요!",
+    "이 주소로 가주세요.",
+    "포항에서 유명한 맛집 추천해주세요!",
+    "얼마나 걸리나요?"
+]
 
 struct STTView: View {
     @ObservedObject private var speachData = SpeachData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
     @State private var isRecording = false
     @State private var smallCircleSize: CGFloat = 0.8
-    @State private var bigCircleSize: CGFloat = 1.2
+    @State private var bigCircleSize: CGFloat = 1
     @State private var sttState: STTState = .listening
+    @State private var selectedGuide = guideSentences.randomElement() ?? ""
     
     var body: some View {
         ZStack{
@@ -51,7 +58,11 @@ struct STTView: View {
                 }
                 .padding()
                 Spacer()
-                
+                Text(selectedGuide)
+                    .foregroundColor(.white)
+                    .font(.system(size: 18))
+                Spacer()
+                    .frame(height: 240)
                 switch sttState {
                 case .listening:
                     Button {
