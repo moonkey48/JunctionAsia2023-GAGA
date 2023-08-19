@@ -15,6 +15,7 @@
 		95FD82C52A8F82B200C5667E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95FD82C42A8F82B200C5667E /* Preview Assets.xcassets */; };
 		95FD82C72A8F82B200C5667E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82C62A8F82B200C5667E /* Persistence.swift */; };
 		95FD82CA2A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82C82A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld */; };
+		991634862A90601C00A77845 /* TTSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991634852A90601C00A77845 /* TTSView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		95FD82C42A8F82B200C5667E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		95FD82C62A8F82B200C5667E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		95FD82C92A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JunctionAsia2023_GAGA.xcdatamodel; sourceTree = "<group>"; };
+		991634852A90601C00A77845 /* TTSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		959862152A9058A30047E1D5 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				991634852A90601C00A77845 /* TTSView.swift */,
 				959862182A9058CB0047E1D5 /* ViewModel */,
 				959862172A9058C70047E1D5 /* View */,
 				959862162A9058BE0047E1D5 /* Model */,
@@ -195,6 +198,7 @@
 				95FD82C02A8F82B000C5667E /* ContentView.swift in Sources */,
 				95FD82BE2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift in Sources */,
 				9598621A2A905B080047E1D5 /* DefaultView.swift in Sources */,
+				991634862A90601C00A77845 /* TTSView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
