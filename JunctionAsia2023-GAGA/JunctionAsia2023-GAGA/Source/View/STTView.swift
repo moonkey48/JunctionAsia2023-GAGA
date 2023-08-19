@@ -7,12 +7,19 @@
 
 import SwiftUI
 
+enum STTState {
+    case listening
+    case loading
+    case done
+}
+
 struct STTView: View {
     @ObservedObject private var speachData = SpeachData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
     @State private var isRecording = false
     @State private var smallCircleSize: CGFloat = 0.8
     @State private var bigCircleSize: CGFloat = 1.2
+    @State private var sttState: STTState = .listening
     
     var body: some View {
         ZStack{
@@ -25,7 +32,13 @@ struct STTView: View {
             .ignoresSafeArea()
             .background(Color(hex: "#0B033F"))
             
-            sttAnimationCircleView
+            switch sttState {
+            case .done:
+                Spacer()
+            default:
+                sttAnimationCircleView
+            }
+            
             VStack {
                 Spacer()
                     .frame(height: 100)
@@ -38,10 +51,27 @@ struct STTView: View {
                 }
                 .padding()
                 Spacer()
-                Button {
-                    // stop
-                } label: {
-                    stopButton
+                
+                switch sttState {
+                case .listening:
+                    Button {
+                        speechRecognizer.resetTranscript()
+                        speechRecognizer.startTranscribing()
+                    } label: {
+                        stopButton
+                    }
+                case .loading:
+                    loadingButton
+                case .done:
+                    HStack {
+                        STTButtonComponentView(contentText: "전달하기") {
+                            
+                        }
+                        STTButtonComponentView(contentText: "다시녹음", buttonType: .reTranscribing) {
+                            
+                        }
+                    }
+                    .padding()
                 }
             }
             
@@ -72,6 +102,18 @@ extension STTView {
                 .frame(width: 58, height: 58)
         }
     }
+    var loadingButton: some View {
+        ZStack {
+            Image("sttStopButton")
+                .resizable()
+                .frame(width: 156, height: 156)
+            ProgressView()
+                .foregroundColor(.white)
+                .frame(width: 58, height: 58)
+                .controlSize(.large)
+                .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+        }
+    }
     var sttAnimationCircleView: some View {
         VStack {
             Spacer()
@@ -92,5 +134,34 @@ extension STTView {
 struct STTView_Previews: PreviewProvider {
     static var previews: some View {
         STTView()
+    }
+}
+
+enum STTButtonType {
+    case send
+    case reTranscribing
+}
+
+struct STTButtonComponentView: View {
+    var contentText: String
+    var buttonType: STTButtonType = .send
+    var buttonAction: () -> Void
+    
+    var body: some View {
+        Button {
+            buttonAction()
+        } label: {
+            HStack {
+                Spacer()
+                Text(contentText)
+                    .frame(height: 36)
+                Spacer()
+            }
+            .padding()
+            .background(buttonType == .send ? Color(hex: "6E65F4") : .white)
+            .foregroundColor(buttonType == .send ? .white : .black)
+            .font(.system(size: 22, weight: .semibold))
+            .cornerRadius(12)
+        }
     }
 }
