@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ReceivedTextView: View {
-    @ObservedObject private var mcSession = TextMultipeerSession.shared
+    @ObservedObject var mcSession = TextMultipeerSession.shared
+    @Binding var receivedText: String
     var body: some View {
         VStack(alignment: .leading) {
-            Text(mcSession.currentText)
+            Text(receivedText)
                 .font(.system(size: 24, weight: .bold))
                 .padding(.top, 30)
             Spacer()
@@ -74,8 +75,8 @@ extension ReceivedTextView {
     }
 }
 
-struct ReceivedTextView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReceivedTextView()
-    }
-}
+//struct ReceivedTextView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReceivedTextView()
+//    }
+//}

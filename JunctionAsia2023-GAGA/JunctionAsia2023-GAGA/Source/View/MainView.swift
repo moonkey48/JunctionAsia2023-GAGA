@@ -11,7 +11,9 @@ struct MainView: View {
     @StateObject private var mcSession = TextMultipeerSession.shared
     @State private var showTTSModal = false
     @State private var showSTTModal = false
-    @State private var isTextReceived = true
+    @State private var isTextReceived = false
+    
+    @State private var savedText = ""
     
     var body: some View {
         VStack {
@@ -29,6 +31,9 @@ struct MainView: View {
             .padding()
             
             VStack(spacing: 16)  {
+                VStack {
+                    Text("\(mcSession.connectedPeers.count) is connected")
+                }
                 TTSComponentView
                     .onTapGesture {
                         showTTSModal = true
@@ -40,8 +45,14 @@ struct MainView: View {
             }
             Spacer()
         }
+        .onChange(of: mcSession.currentText, perform: { receivecTextFromMC in
+            if savedText != receivecTextFromMC {
+                savedText = receivecTextFromMC
+                isTextReceived = true
+            }
+        })
         .sheet(isPresented: $isTextReceived, content: {
-            ReceivedTextView()
+            ReceivedTextView(receivedText: $savedText)
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
         })

@@ -46,7 +46,7 @@ class TextMultipeerSession: NSObject, ObservableObject {
     
     func send(text: String) {
         
-        self.currentText = text
+        // self.currentText = text
         
         if !session.connectedPeers.isEmpty {
             do {
