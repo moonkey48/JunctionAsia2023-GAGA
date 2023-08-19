@@ -20,6 +20,7 @@
 		95FD82C72A8F82B200C5667E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82C62A8F82B200C5667E /* Persistence.swift */; };
 		95FD82CA2A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82C82A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld */; };
 		99F805802A9067CE0081D332 /* TTSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F8057F2A9067CE0081D332 /* TTSTest.swift */; };
+		99F805832A9080400081D332 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99F805852A9080400081D332 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		95FD82C62A8F82B200C5667E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		95FD82C92A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JunctionAsia2023_GAGA.xcdatamodel; sourceTree = "<group>"; };
 		99F8057F2A9067CE0081D332 /* TTSTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSTest.swift; sourceTree = "<group>"; };
+		99F805842A9080400081D332 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		99F805862A9082240081D332 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 				95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */,
 				95FD82BF2A8F82B000C5667E /* ContentView.swift */,
 				99F8057F2A9067CE0081D332 /* TTSTest.swift */,
+				99F805852A9080400081D332 /* Localizable.strings */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -178,6 +182,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 95FD82B12A8F82B000C5667E;
 			productRefGroup = 95FD82BB2A8F82B000C5667E /* Products */;
@@ -195,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD82C52A8F82B200C5667E /* Preview Assets.xcassets in Resources */,
+				99F805832A9080400081D332 /* Localizable.strings in Resources */,
 				95FD82C22A8F82B200C5667E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,11 +228,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		99F805852A9080400081D332 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99F805842A9080400081D332 /* en */,
+				99F805862A9082240081D332 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		95FD82CB2A8F82B200C5667E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -287,6 +306,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -345,7 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JunctionAsia2023-GAGA/Preview Content\"";
-				DEVELOPMENT_TEAM = 333J2S2AQK;
+				DEVELOPMENT_TEAM = L2C588NJHZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JunctionAsia2023-GAGA/Info.plist";
@@ -378,7 +398,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JunctionAsia2023-GAGA/Preview Content\"";
-				DEVELOPMENT_TEAM = 333J2S2AQK;
+				DEVELOPMENT_TEAM = L2C588NJHZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JunctionAsia2023-GAGA/Info.plist";

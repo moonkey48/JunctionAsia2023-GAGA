@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  JunctionAsia2023-GAGA
+
+  Created by Lee Juwon on 2023/08/19.
+  
+*/
+
+// 현재 언어
+"Read Text" = "텍스트 읽기"; // 한국어
+"Read Text" = "Read Text"; // 영어
+
+

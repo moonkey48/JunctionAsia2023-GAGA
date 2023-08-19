@@ -14,24 +14,31 @@ struct TTSTest: View {
     
     var body: some View {
         VStack {
-            TextField("텍스트를 입력하세요", text: $textToRead)
+            TextField("Enter Text", text: $textToRead)
                 .padding()
             
-            Button("텍스트 읽기") {
+            Button("Read Text") {
                 // 현재 음성 출력 중인 내용 중단
                 synthesizer.stopSpeaking(at: .immediate)
                 
                 // 음성 출력할 내용을 포함한 AVSpeechUtterance 생성
                 let utterance = AVSpeechUtterance(string: textToRead)
                 
-                // 한국어 TTS를 위한 음성 및 언어 설정
-                utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                // 사용자의 선호 언어 가져오기
+                let preferredLanguage = Locale.preferredLanguages.first ?? "en"
+                    
+                // 선호 언어에 따라 TTS 음성 설정
+                if preferredLanguage.contains("ko") {
+                    utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                } else {
+                    utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+                }
                 
                 // 음성 출력 시작
                 synthesizer.speak(utterance)
                 
                 // 콘솔에 메시지 출력하여 TTS가 동작 중임을 확인 (시뮬레이터용)
-                print("읽을 텍스트: \(textToRead)")
+                print("Read Text: \(textToRead)")
             }
             .padding()
         }
