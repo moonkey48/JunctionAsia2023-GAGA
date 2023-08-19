@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct STTTestView: View {
-    @ObservedObject private var speachData = SpeachData.shared
+    @ObservedObject private var speachData = SpeechData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
     @State private var isRecording = false
     
