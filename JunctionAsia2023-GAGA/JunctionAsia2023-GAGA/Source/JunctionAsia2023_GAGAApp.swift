@@ -13,7 +13,8 @@ struct JunctionAsia2023_GAGAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            OnBoardingView()
         }
     }
 }
