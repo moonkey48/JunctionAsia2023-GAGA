@@ -19,6 +19,7 @@
 		95FD82C52A8F82B200C5667E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95FD82C42A8F82B200C5667E /* Preview Assets.xcassets */; };
 		95FD82C72A8F82B200C5667E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82C62A8F82B200C5667E /* Persistence.swift */; };
 		95FD82CA2A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82C82A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld */; };
+		99F805802A9067CE0081D332 /* TTSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F8057F2A9067CE0081D332 /* TTSTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		95FD82C42A8F82B200C5667E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		95FD82C62A8F82B200C5667E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		95FD82C92A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JunctionAsia2023_GAGA.xcdatamodel; sourceTree = "<group>"; };
+		99F8057F2A9067CE0081D332 /* TTSTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				959862162A9058BE0047E1D5 /* Model */,
 				95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */,
 				95FD82BF2A8F82B000C5667E /* ContentView.swift */,
+				99F8057F2A9067CE0081D332 /* TTSTest.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				9598621F2A905D6B0047E1D5 /* MCTestView.swift in Sources */,
 				9598621A2A905B080047E1D5 /* DefaultView.swift in Sources */,
 				959862242A90615A0047E1D5 /* STTViewModel.swift in Sources */,
+				99F805802A9067CE0081D332 /* TTSTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
