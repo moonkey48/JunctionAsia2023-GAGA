@@ -22,7 +22,6 @@ struct SettingView: View {
         return ""
     }
     var body: some View {
-        NavigationView {
             VStack(spacing: 16) {
                 NavigationLink {
                     EmptyView()
@@ -40,7 +39,7 @@ struct SettingView: View {
             }
             .padding(.horizontal)
             .navigationTitle("Settings")
-        }
+            .navigationBarTitleDisplayMode(.inline)
     }
     
     func capsuleView(_ title: String, _ category: String) -> some View {
@@ -51,7 +50,7 @@ struct SettingView: View {
                 .padding(.leading, 16)
             
             Spacer()
-            Text(selectedLanguage)
+            Text(category)
                 .font(.bodyRegular)
                 .foregroundColor(.custom(.gray400))
             

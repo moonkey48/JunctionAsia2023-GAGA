@@ -9,14 +9,11 @@ import SwiftUI
 
 @main
 struct JunctionAsia2023_GAGAApp: App {
-    let persistenceController = PersistenceController.shared
-
+    @State private var showOnboarding = UserDefaults.standard.string(forKey: "userType") ?? "Unselected" == "Unselected"
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//            TTSView()
-            OnBoardingView()
-
+            MainView()
+                .fullScreenCover(isPresented: $showOnboarding, content: OnBoardingView.init)    
         }
     }
 }
