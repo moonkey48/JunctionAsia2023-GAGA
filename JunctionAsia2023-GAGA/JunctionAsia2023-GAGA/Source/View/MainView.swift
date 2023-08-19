@@ -18,9 +18,13 @@ struct MainView: View {
             HStack {
                 Image("logoBlack")
                 Spacer()
-                Image(systemName: "gearshape.fill")
-                    .font(.system(size: 24))
-                    .foregroundColor(Color(hex: "646F7C"))
+                NavigationLink {
+                        SettingView()
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                            .font(.system(size: 24))
+                            .foregroundColor(Color(hex: "646F7C"))
+                    }
             }
             .padding()
             

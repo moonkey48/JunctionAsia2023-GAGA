@@ -37,7 +37,7 @@ struct UserTypeSelectionView: View {
             
             Button {
                 withAnimation {
-                    selectedTabTag = 2 // MainView로 이동
+                    selectedTabTag = 999 // MainView로 이동
                 }
             } label: {
                 Text("다음")
