@@ -23,6 +23,7 @@
 		BE0B019F2A907C9500FA9320 /* PapagoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0B019E2A907C9500FA9320 /* PapagoResponse.swift */; };
 		BE0B01A12A90800500FA9320 /* PapagoAPI.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE0B01A02A90800500FA9320 /* PapagoAPI.plist */; };
 		BE15247B2A9067B400BF6F92 /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE15247A2A9067B400BF6F92 /* LanguageModel.swift */; };
+		99F805832A9080400081D332 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 99F805852A9080400081D332 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		BE0B019E2A907C9500FA9320 /* PapagoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoResponse.swift; sourceTree = "<group>"; };
 		BE0B01A02A90800500FA9320 /* PapagoAPI.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PapagoAPI.plist; sourceTree = "<group>"; };
 		BE15247A2A9067B400BF6F92 /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
+		99F805842A9080400081D332 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		99F805862A9082240081D332 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +77,10 @@
 				959862162A9058BE0047E1D5 /* Model */,
 				95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */,
 				95FD82BF2A8F82B000C5667E /* ContentView.swift */,
+
 				99F8057F2A9067CE0081D332 /* TTSTest.swift */,
+				99F805852A9080400081D332 /* Localizable.strings */,
+
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -93,6 +99,7 @@
 		959862172A9058C70047E1D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				99F8057F2A9067CE0081D332 /* TTSTest.swift */,
 				959862192A905B080047E1D5 /* DefaultView.swift */,
 				9598621E2A905D6B0047E1D5 /* MCTestView.swift */,
 				959862252A90625B0047E1D5 /* STTTestView.swift */,
@@ -187,6 +194,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 95FD82B12A8F82B000C5667E;
 			productRefGroup = 95FD82BB2A8F82B000C5667E /* Products */;
@@ -205,6 +213,7 @@
 			files = (
 				BE0B01A12A90800500FA9320 /* PapagoAPI.plist in Resources */,
 				95FD82C52A8F82B200C5667E /* Preview Assets.xcassets in Resources */,
+				99F805832A9080400081D332 /* Localizable.strings in Resources */,
 				95FD82C22A8F82B200C5667E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,11 +243,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		99F805852A9080400081D332 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				99F805842A9080400081D332 /* en */,
+				99F805862A9082240081D332 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		95FD82CB2A8F82B200C5667E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -299,6 +321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -357,7 +380,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JunctionAsia2023-GAGA/Preview Content\"";
-				DEVELOPMENT_TEAM = 333J2S2AQK;
+				DEVELOPMENT_TEAM = L2C588NJHZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JunctionAsia2023-GAGA/Info.plist";
@@ -390,7 +413,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"JunctionAsia2023-GAGA/Preview Content\"";
-				DEVELOPMENT_TEAM = 333J2S2AQK;
+				DEVELOPMENT_TEAM = L2C588NJHZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "JunctionAsia2023-GAGA/Info.plist";
