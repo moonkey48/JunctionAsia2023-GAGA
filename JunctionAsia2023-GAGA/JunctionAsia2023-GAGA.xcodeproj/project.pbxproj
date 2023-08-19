@@ -32,6 +32,9 @@
 		BEA10C8E2A90A4DD00354196 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C8D2A90A4DD00354196 /* Font.swift */; };
 		BEA10C902A910F4400354196 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C8F2A910F4400354196 /* LanguageCell.swift */; };
 		BEA10C922A9111F000354196 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C912A9111F000354196 /* Country.swift */; };
+		BEA10C942A91130F00354196 /* UserTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C932A91130F00354196 /* UserTypeSelectionView.swift */; };
+		BEA10C962A91133500354196 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C952A91133500354196 /* UserType.swift */; };
+		BEA10C982A91139500354196 /* UserTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA10C972A91139500354196 /* UserTypeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,9 @@
 		BEA10C8D2A90A4DD00354196 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		BEA10C8F2A910F4400354196 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		BEA10C912A9111F000354196 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		BEA10C932A91130F00354196 /* UserTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionView.swift; sourceTree = "<group>"; };
+		BEA10C952A91133500354196 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
+		BEA10C972A91139500354196 /* UserTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				BEA10C912A9111F000354196 /* Country.swift */,
+				BEA10C952A91133500354196 /* UserType.swift */,
 				95FD82C62A8F82B200C5667E /* Persistence.swift */,
 				95FD82C82A8F82B200C5667E /* JunctionAsia2023_GAGA.xcdatamodeld */,
 				BE15247A2A9067B400BF6F92 /* LanguageModel.swift */,
@@ -123,6 +130,8 @@
 				959862292A909C8B0047E1D5 /* STTView.swift */,
 				BE0B01A22A909F1500FA9320 /* UserLanguageSelectionView.swift */,
 				9598622F2A90AFAA0047E1D5 /* LaunchScreenView.swift */,
+				BEA10C932A91130F00354196 /* UserTypeSelectionView.swift */,
+				BEA10C972A91139500354196 /* UserTypeCell.swift */,
 				BEA10C8F2A910F4400354196 /* LanguageCell.swift */,
 			);
 			path = View;
@@ -278,6 +287,9 @@
 				9598621F2A905D6B0047E1D5 /* MCTestView.swift in Sources */,
 				BEA10C8C2A90A2F000354196 /* Color.swift in Sources */,
 				BE0B019F2A907C9500FA9320 /* PapagoResponse.swift in Sources */,
+				BEA10C982A91139500354196 /* UserTypeCell.swift in Sources */,
+				BEA10C962A91133500354196 /* UserType.swift in Sources */,
+				BEA10C942A91130F00354196 /* UserTypeSelectionView.swift in Sources */,
 				9598621A2A905B080047E1D5 /* DefaultView.swift in Sources */,
 				BE15247B2A9067B400BF6F92 /* LanguageModel.swift in Sources */,
 				959862242A90615A0047E1D5 /* STTViewModel.swift in Sources */,

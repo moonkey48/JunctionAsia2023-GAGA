@@ -1,32 +1,33 @@
 //
-//  LanguageCell.swift
+//  UserTypeCell.swift
 //  JunctionAsia2023-GAGA
 //
-//  Created by Gucci on 2023/08/19.
+//  Created by Gucci on 2023/08/20.
 //
 
 import SwiftUI
 
-struct LanguageCell: View {
-    let country: Country
+struct UserTypeCell: View {
+    let userType: UserType
     private var isSelected: Bool {
-        return userLanguage == country.language
+        return userType.text == selectedUserType
     }
-    @AppStorage("userLanguage") var userLanguage: String = "Unselected"
+    @AppStorage("userType") var selectedUserType = "Unselected"
     
     var body: some View {
         HStack {
-            Image(country.flag)
-                .resizable()
+            Text(userType.imageString)
+                .background(Color.custom(.white))
+                .font(.titleDefault)
                 .frame(width: 60, height: 36)
                 .clipShape(Circle())
                 .overlay {
                     Circle()
                         .stroke(Color.custom(.gray200), lineWidth: 2)
                 }
-                .padding(.leading, 24)
+//                .padding(.leading, 24)
             
-            Text(country.language)
+            Text(userType.text)
                 .font(.bodySemibold)
                 .foregroundColor(!isSelected ? Color.custom(.gray600) : Color.custom(.white))
                 .padding(.leading, 16)
@@ -49,13 +50,13 @@ struct LanguageCell: View {
         .background(!isSelected ? Color.custom(.gray200) : Color.custom(.secondary))
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .onTapGesture {
-            userLanguage = country.language
+            selectedUserType = userType.text
         }
     }
 }
 
-struct LanguageCell_Previews: PreviewProvider {
+struct UserTypeCell_Previews: PreviewProvider {
     static var previews: some View {
-        LanguageCell(country: Country.uk)
+        UserTypeCell(userType: .driver)
     }
 }
