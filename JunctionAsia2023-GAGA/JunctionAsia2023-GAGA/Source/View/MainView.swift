@@ -10,7 +10,9 @@ import SwiftUI
 struct MainView: View {
     @AppStorage("userType") var userType = "Unselected"
     @StateObject private var mcSession = TextMultipeerSession.shared
-    @StateObject private var driverRecognizer = CommandRecognizer()
+    @StateObject private var commandRecognizer = CommandRecognizer()
+    @ObservedObject private var mainViewCommandViewModel = MainViewCommandViewModel.shared
+    @ObservedObject private var mainViewSTTRecognizer = MainViewSTTRecognizer()
     @State private var showTTSModal = false
     @State private var showSTTModal = false
     @State private var isTextReceived = false
@@ -50,11 +52,38 @@ struct MainView: View {
                 }
                 Spacer()
             }
+            .onAppear {
+                mainViewSTTRecognizer.startTranscribing()
+            }
+            .onDisappear {
+                mainViewSTTRecognizer.resetTranscript()
+            }
         }
+        .onChange(of: showSTTModal, perform: { _ in
+            if !showSTTModal {
+                mainViewSTTRecognizer.startTranscribing()
+            }
+        })
         .onChange(of: mcSession.currentText, perform: { receivecTextFromMC in
             if savedText != receivecTextFromMC {
                 savedText = receivecTextFromMC
                 isTextReceived = true
+            }
+        })
+        .onChange(of: mainViewCommandViewModel.mainViewCommand, perform: { command in
+            print(command.rawValue)
+            switch command as MainViewCommands {
+            case .sttCommand:
+                showSTTModal = true
+            case .ttsCommand:
+                showTTSModal = true
+            case .closeCommand:
+                showSTTModal = false
+                showTTSModal = false
+            case .restartCommand:
+                break
+            case .notDefined:
+                break
             }
         })
         .sheet(isPresented: $isTextReceived, content: {
@@ -63,8 +92,7 @@ struct MainView: View {
                 .presentationDragIndicator(.visible)
         })
         .sheet(isPresented: $showSTTModal) {
-            
-            STTView(showSTTModal: $showSTTModal,driverRecognizer: driverRecognizer)
+            STTView(showSTTModal: $showSTTModal,driverRecognizer: commandRecognizer)
         }
         .sheet(isPresented: $showTTSModal) {
             TTSView(showTTSModal: $showTTSModal)

@@ -119,6 +119,9 @@ struct STTView: View {
             textSession.send(text: translatedText)
             showSTTModal = false
         }
+        .onDisappear  {
+            endRecognize()
+        }
     }
     
     private func translate(value: String){
