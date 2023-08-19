@@ -26,7 +26,7 @@ struct UserLanguageSelectionView: View {
             }
             .padding(.horizontal)
 
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
                     ForEach(Country.allCases, id: \.self) { country in
                         LanguageCell(country: country)
@@ -46,6 +46,7 @@ struct UserLanguageSelectionView: View {
                 Text("다음")
                     .primaryButtonStyle(isSelected: isLanguageSelected)
             }
+            .disabled(!isLanguageSelected)
         }
 
     }
