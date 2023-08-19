@@ -13,6 +13,7 @@ enum NamedColor: String, CaseIterable {
 }
 
 class TextMultipeerSession: NSObject, ObservableObject {
+    static let shared = TextMultipeerSession()
     @Published var connectedPeers: [MCPeerID] = []
     @Published var currentText = "default"
     

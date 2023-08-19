@@ -20,7 +20,8 @@ let guideSentences = [
 ]
 
 struct STTView: View {
-    @StateObject private var textSession = TextMultipeerSession()
+    @Binding var showSTTModal: Bool
+    @StateObject private var textSession = TextMultipeerSession.shared
     @ObservedObject private var papagoModel = LanguageModel.shared
     @ObservedObject private var speechData = SpeechData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
@@ -116,6 +117,7 @@ struct STTView: View {
         }
         .onChange(of: papagoModel.translatedText) { translatedText in
             textSession.send(text: translatedText)
+            showSTTModal = false
         }
     }
     
@@ -217,8 +219,15 @@ extension STTView {
     }
 }
 
+struct STTPreview: View {
+    @State private var showSTTModal = false
+    var body: some View {
+        STTView(showSTTModal: $showSTTModal)
+    }
+}
+
 struct STTView_Previews: PreviewProvider {
     static var previews: some View {
-        STTView()
+        STTPreview()
     }
 }
