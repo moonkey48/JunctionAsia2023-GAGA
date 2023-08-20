@@ -4,7 +4,7 @@
 //
 //  Created by Seungui Moon on 2023/08/19.
 //
-
+import AVFoundation
 import SwiftUI
 
 enum STTState {
@@ -26,7 +26,9 @@ let guideSentencesEn = [
     "How long does it take?"
 ]
 
+
 struct STTView: View {
+    let player: AudioPlayer = AudioPlayer()
     @AppStorage("userLanguage") var userLanguage = "Unselected"
     @AppStorage("userType") var userType = "Unselected"
     @Binding var showSTTModal: Bool
@@ -45,6 +47,8 @@ struct STTView: View {
     @State private var time = 0
     @State private var timer: Timer?
     @State private var recognizedText = ""
+    
+    
     
     var body: some View {
         ZStack{
@@ -119,6 +123,7 @@ struct STTView: View {
         }
         .onAppear {
             startRecognize()
+            player.audioPlay(name: "MP_start")
             circleAnimationStart()
             if userLanguage == "Korean" || userLanguage == "Korea" {
                 speechData.currentLocale = .korea
@@ -157,6 +162,7 @@ struct STTView: View {
         }
         .onDisappear  {
             endRecognize()
+            player.audioPlay(name: "MP_finish")
         }
     }
     

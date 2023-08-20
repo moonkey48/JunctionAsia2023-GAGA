@@ -27,6 +27,8 @@ struct ReceivedTextView: View {
             HStack() {
                 retryButton
                     .onTapGesture {
+//                        handleTTS(text: papagoModel.translatedText)
+                        // 변경된 부분: 더 큰 음량으로 TTS 재생
                         handleTTS(text: papagoModel.translatedText)
                     }
                 answerButton
@@ -93,7 +95,6 @@ struct ReceivedTextView: View {
         }
                         
         // 음성 출력 시작
-        
         synthesizer.speak(utterance)
                         
         // 콘솔에 메시지 출력하여 TTS가 동작 중임을 확인 (시뮬레이터용)
