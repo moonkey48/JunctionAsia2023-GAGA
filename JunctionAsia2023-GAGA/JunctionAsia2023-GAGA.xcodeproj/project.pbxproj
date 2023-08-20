@@ -18,6 +18,7 @@
 		959862392A9158E10047E1D5 /* ReceivedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862382A9158E10047E1D5 /* ReceivedTextView.swift */; };
 		9598623E2A916DA90047E1D5 /* MainViewSTTRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9598623D2A916DA90047E1D5 /* MainViewSTTRecognizer.swift */; };
 		959862402A9177F60047E1D5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9598623F2A9177F60047E1D5 /* LaunchScreenView.swift */; };
+		959862422A9185C00047E1D5 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959862412A9185C00047E1D5 /* UserInfoViewModel.swift */; };
 		95FD82BE2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */; };
 		95FD82C02A8F82B000C5667E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD82BF2A8F82B000C5667E /* ContentView.swift */; };
 		95FD82C22A8F82B200C5667E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95FD82C12A8F82B200C5667E /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		959862382A9158E10047E1D5 /* ReceivedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTextView.swift; sourceTree = "<group>"; };
 		9598623D2A916DA90047E1D5 /* MainViewSTTRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewSTTRecognizer.swift; sourceTree = "<group>"; };
 		9598623F2A9177F60047E1D5 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
+		959862412A9185C00047E1D5 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		95FD82BA2A8F82B000C5667E /* JunctionAsia2023-GAGA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JunctionAsia2023-GAGA.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95FD82BD2A8F82B000C5667E /* JunctionAsia2023_GAGAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JunctionAsia2023_GAGAApp.swift; sourceTree = "<group>"; };
 		95FD82BF2A8F82B000C5667E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				959862232A90615A0047E1D5 /* STTViewModel.swift */,
 				959862332A910CDE0047E1D5 /* DriverCommandViewModel.swift */,
 				9598623D2A916DA90047E1D5 /* MainViewSTTRecognizer.swift */,
+				959862412A9185C00047E1D5 /* UserInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				959862392A9158E10047E1D5 /* ReceivedTextView.swift in Sources */,
 				BEA10C902A910F4400354196 /* LanguageCell.swift in Sources */,
 				95FD82C72A8F82B200C5667E /* Persistence.swift in Sources */,
+				959862422A9185C00047E1D5 /* UserInfoViewModel.swift in Sources */,
 				9598622A2A909C8B0047E1D5 /* STTView.swift in Sources */,
 				BEA10C8E2A90A4DD00354196 /* Font.swift in Sources */,
 				959862402A9177F60047E1D5 /* LaunchScreenView.swift in Sources */,

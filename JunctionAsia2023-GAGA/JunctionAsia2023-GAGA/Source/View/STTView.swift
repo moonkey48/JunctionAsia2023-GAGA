@@ -20,6 +20,8 @@ let guideSentences = [
 ]
 
 struct STTView: View {
+    @AppStorage("userLanguage") var userLanguage = "Unselected"
+    @AppStorage("userType") var userType = "Unselected"
     @Binding var showSTTModal: Bool
     @StateObject private var textSession = TextMultipeerSession.shared
     @ObservedObject private var papagoModel = LanguageModel.shared
@@ -55,10 +57,6 @@ struct STTView: View {
             }
             
             VStack {
-                if !textSession.currentText.isEmpty {
-                    Text(textSession.currentText)
-                        .foregroundColor(.white)
-                }
                 Spacer()
                     .frame(height: 100)
                 HStack {
@@ -98,12 +96,26 @@ struct STTView: View {
         .onAppear {
             startRecognize()
             circleAnimationStart()
+            if userLanguage == "Korean" || userLanguage == "Korea" {
+                speechData.currentLocale = .korea
+            } else{
+                speechData.currentLocale = .english
+            }
+            if userType == "Driver" {
+                papagoModel.sourceLangType = "ko"
+                papagoModel.targetLangType = "en"
+                speechData.currentLocale = .korea
+            } else {
+                papagoModel.sourceLangType = "en"
+                papagoModel.targetLangType = "ko"
+                speechData.currentLocale = .english
+            }
         }
         .onChange(of: speechData.speechText) { _ in
             self.time = 0
         }
         .onChange(of: time) { newValue in
-            if newValue > 4 {
+            if newValue > 2 {
                 if speechData.speechText.isEmpty {
                     time = 0
                 } else {

@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct MainView: View {
+    @AppStorage("userLanguage") var userLanguage = "Unselected"
     @AppStorage("userType") var userType = "Unselected"
     @StateObject private var mcSession = TextMultipeerSession.shared
     @StateObject private var commandRecognizer = CommandRecognizer()
     @ObservedObject private var mainViewCommandViewModel = MainViewCommandViewModel.shared
     @ObservedObject private var mainViewSTTRecognizer = MainViewSTTRecognizer()
+    @ObservedObject private var papagoModel = LanguageModel.shared
+    @ObservedObject private var speechData = SpeechData.shared
     @State private var showTTSModal = false
     @State private var showSTTModal = false
     @State private var isTextReceived = false
@@ -36,9 +39,6 @@ struct MainView: View {
                 .padding()
                 
                 VStack(spacing: 16)  {
-                    VStack {
-                        Text("\(mcSession.connectedPeers.count) is connected")
-                    }
                     if userType == "Passenger" {
                         TTSComponentView
                             .onTapGesture {
@@ -54,6 +54,15 @@ struct MainView: View {
             }
             .onAppear {
                 mainViewSTTRecognizer.startTranscribing()
+                if userType == "Driver" {
+                    papagoModel.sourceLangType = "ko"
+                    papagoModel.targetLangType = "en"
+                    speechData.currentLocale = .korea
+                } else {
+                    papagoModel.sourceLangType = "en"
+                    papagoModel.targetLangType = "ko"
+                    speechData.currentLocale = .english
+                }
             }
             .onDisappear {
                 mainViewSTTRecognizer.resetTranscript()
@@ -88,7 +97,12 @@ struct MainView: View {
             }
         })
         .sheet(isPresented: $isTextReceived, content: {
-            ReceivedTextView(receivedText: $savedText)
+            ReceivedTextView(
+                receivedText: $savedText,
+                isTextReceived: $isTextReceived,
+                showSTTModal: $showSTTModal,
+                mainViewSTTRecognizer: mainViewSTTRecognizer
+            )
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
         })
@@ -153,7 +167,7 @@ extension MainView {
         }
         .padding(30)
         .frame(width: 358, height: 254)
-        .background(userType == "Pasenger" ? Color(hex: "0B033F") : Color(hex: "6E65F4"))
+        .background(userType == "Pasenger" ? Color(hex: "6E65F4") : Color(hex: "0B033F"))
         .cornerRadius(16)
     }
 }

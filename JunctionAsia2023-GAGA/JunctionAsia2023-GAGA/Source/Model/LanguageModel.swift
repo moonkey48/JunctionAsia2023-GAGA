@@ -21,9 +21,9 @@ final class LanguageModel: ObservableObject {
     static let shared = LanguageModel()
     private init(){}
     // 여행자 언어
-    private let sourceLangType: String = "ko"
+    var sourceLangType: String = "en"
     // 운전자 언어
-    private let targetLangType: String = "en"
+    var targetLangType: String = "ko"
     
     private var id: String? {
         guard let url = Bundle.main.url(forResource: "PapagoAPI", withExtension: "plist") else { return nil }

@@ -21,7 +21,16 @@ struct TTSView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color(hex: "#E9EBEE"), lineWidth: 2)
                     .frame(width: 358, height: 360)
-                
+                VStack {
+                    HStack {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        Spacer()
+                    }
+                    .padding()
+                    Spacer()
+                }
                 TextEditor(text: $text)
                     .foregroundColor(Color(.black))
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(Color(hex: "#F7F8F9")))
@@ -44,7 +53,8 @@ struct TTSView: View {
             Spacer()
             
             Button(action: {
-                translate(value: text)
+                textSession.send(text: text)
+                showTTSModal = false
 //                handleTTS()
             }) {
                 Text("Send")
@@ -56,20 +66,6 @@ struct TTSView: View {
             }
             .disabled(text.isEmpty)
             .padding(.bottom, 27)
-        }
-        .onChange(of: papagoModel.translatedText) { translatedText in
-            textSession.send(text: translatedText)
-            showTTSModal = false
-        }
-    }
-    private func translate(value: String){
-        Task {
-            do {
-                try await papagoModel.fetchTranslation(with: value)
-                print(papagoModel.translatedText)
-            } catch {
-                print("error on papago")
-            }
         }
     }
     

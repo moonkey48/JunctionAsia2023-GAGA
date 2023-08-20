@@ -10,7 +10,12 @@ import SwiftUI
 
 struct ReceivedTextView: View {
     @ObservedObject var mcSession = TextMultipeerSession.shared
+    @ObservedObject var papagoModel = LanguageModel.shared
+    @ObservedObject var mainViewCommandViewModel = MainViewCommandViewModel.shared
     @Binding var receivedText: String
+    @Binding var isTextReceived: Bool
+    @Binding var showSTTModal: Bool
+    var mainViewSTTRecognizer: MainViewSTTRecognizer
     let synthesizer = AVSpeechSynthesizer()
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,24 +25,61 @@ struct ReceivedTextView: View {
             Spacer()
             HStack() {
                 retryButton
+                    .onTapGesture {
+                        handleTTS(text: papagoModel.translatedText)
+                    }
                 answerButton
+                    .onTapGesture {
+                        isTextReceived = false
+                        showSTTModal = true
+                    }
             }
         }
+        .onChange(of: mainViewCommandViewModel.mainViewCommand, perform: { command in
+            print(command.rawValue)
+            switch command as MainViewCommands {
+            case .sttCommand:
+                isTextReceived = false
+                showSTTModal = true
+            case .ttsCommand:
+                break
+            case .closeCommand:
+                isTextReceived = false
+            case .restartCommand:
+                break
+            case .notDefined:
+                break
+            }
+        })
         .onAppear {
-            handleTTS(text: receivedText)
+            translate(value: receivedText)
+            mainViewSTTRecognizer.startTranscribing()
         }
-        .onChange(of: receivedText, perform: { newValue in
+        .onChange(of: papagoModel.translatedText, perform: { newValue in
             handleTTS(text: newValue)
         })
         
         .padding()
     }
+    
+    private func translate(value: String){
+        Task {
+            do {
+                try await papagoModel.fetchTranslation(with: value)
+                print(papagoModel.translatedText)
+            } catch {
+                print("error on papago")
+            }
+        }
+    }
+    
     private func handleTTS(text: String){
         // 현재 음성 출력 중인 내용 중단
         synthesizer.stopSpeaking(at: .immediate)
                         
         // 음성 출력할 내용을 포함한 AVSpeechUtterance 생성
         let utterance = AVSpeechUtterance(string: text)
+        utterance.volume = 100.0
                         
         // 사용자의 선호 언어 가져오기
         let preferredLanguage = Locale.preferredLanguages.first ?? "en"
@@ -50,6 +92,7 @@ struct ReceivedTextView: View {
         }
                         
         // 음성 출력 시작
+        
         synthesizer.speak(utterance)
                         
         // 콘솔에 메시지 출력하여 TTS가 동작 중임을 확인 (시뮬레이터용)

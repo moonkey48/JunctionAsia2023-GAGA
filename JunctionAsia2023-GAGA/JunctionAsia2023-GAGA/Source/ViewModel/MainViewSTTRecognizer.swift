@@ -11,9 +11,9 @@ import Speech
 import SwiftUI
 
 enum MainViewCommands: String {
-    case sttCommand = "음성"
-    case ttsCommand = "글자"
-    case closeCommand = "닫기"
+    case sttCommand = "시작"
+    case ttsCommand = "텍스트"
+    case closeCommand = "취소"
     case restartCommand = "다시"
     case notDefined = ""
 }

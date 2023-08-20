@@ -19,7 +19,7 @@ final class SpeechData: ObservableObject {
     private init(){}
     
     @Published var speechText = ""
-    @Published var currentLocale: LocaleSupport = .korea
+    @Published var currentLocale: LocaleSupport = .english
 }
 
 actor SpeechRecognizer: ObservableObject {
