@@ -110,7 +110,7 @@ extension ReceivedTextView {
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(.white)
             } else {
-                Text("Listen Again")
+                Text("Listen\nAgain")
                     .foregroundColor(Color.white)
                     .font(.system(size: 32, weight: .bold))
             }
