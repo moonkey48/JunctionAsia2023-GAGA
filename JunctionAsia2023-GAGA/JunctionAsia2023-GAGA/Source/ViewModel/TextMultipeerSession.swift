@@ -8,11 +8,9 @@
 import MultipeerConnectivity
 import os
 
-enum NamedColor: String, CaseIterable {
-    case red, green, yellow
-}
 
 class TextMultipeerSession: NSObject, ObservableObject {
+    static let shared = TextMultipeerSession()
     @Published var connectedPeers: [MCPeerID] = []
     @Published var currentText = "default"
     
@@ -44,8 +42,6 @@ class TextMultipeerSession: NSObject, ObservableObject {
    }
     
     func send(text: String) {
-        
-        self.currentText = text
         
         if !session.connectedPeers.isEmpty {
             do {

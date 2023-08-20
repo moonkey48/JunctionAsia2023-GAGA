@@ -1,29 +1,35 @@
 //
-//  STTViewModel.swift
+//  MainViewSTTRecognizer.swift
 //  JunctionAsia2023-GAGA
 //
-//  Created by Seungui Moon on 2023/08/19.
+//  Created by Seungui Moon on 2023/08/20.
 //
+
 import Foundation
 import AVFoundation
 import Speech
 import SwiftUI
 
-enum LocaleSupport: String {
-    case korea = "ko_KR"
-    case english = "en-US"
+enum MainViewCommands: String {
+    case sttCommand = "시작"
+    case ttsCommand = "텍스트"
+    case closeCommand = "취소"
+    case restartCommand = "다시"
+    case notDefined = ""
 }
 
-final class SpeechData: ObservableObject {
-    static let shared = SpeechData()
+
+final class MainViewCommandViewModel: ObservableObject {
+    static let shared = MainViewCommandViewModel()
     private init(){}
     
-    @Published var speechText = ""
-    @Published var currentLocale: LocaleSupport = .english
+    @Published var mainViewCommand: MainViewCommands = .notDefined
+    @Published var currentLocale: LocaleSupport = .korea
 }
 
-actor SpeechRecognizer: ObservableObject {
-    let speachData = SpeechData.shared
+
+actor MainViewSTTRecognizer: ObservableObject {
+    let mainViewCommandViewModel = MainViewCommandViewModel.shared
     enum RecognizerError: Error {
         case nilRecognizer
         case notAuthorizedToRecognize
@@ -52,7 +58,7 @@ actor SpeechRecognizer: ObservableObject {
      */
     init() {
         
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: speachData.currentLocale.rawValue))
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: mainViewCommandViewModel.currentLocale.rawValue))
         
         
         guard recognizer != nil else {
@@ -71,12 +77,6 @@ actor SpeechRecognizer: ObservableObject {
             } catch {
                 transcribe(error)
             }
-        }
-    }
-    
-    @MainActor func resetTranscribeMessage() {
-        Task {
-            transcript = ""
         }
     }
     
@@ -155,7 +155,23 @@ actor SpeechRecognizer: ObservableObject {
     }
     private func setResult(result: SFSpeechRecognitionResult?) {
         let receivedFinalResult = result?.bestTranscription.formattedString
-        speachData.speechText = receivedFinalResult ?? ""
+        let seperated = receivedFinalResult?.split(separator: " ").last
+        guard let seperated = seperated else {
+            return
+        }
+        print(seperated)
+        if seperated == MainViewCommands.sttCommand.rawValue   {
+            mainViewCommandViewModel.mainViewCommand = .sttCommand
+        } else if seperated == MainViewCommands.ttsCommand.rawValue   {
+            mainViewCommandViewModel.mainViewCommand = .ttsCommand
+        } else if seperated == MainViewCommands.closeCommand.rawValue   {
+            mainViewCommandViewModel.mainViewCommand = .closeCommand
+        } else if seperated == MainViewCommands.restartCommand.rawValue   {
+            mainViewCommandViewModel.mainViewCommand = .restartCommand
+        } else {
+            mainViewCommandViewModel.mainViewCommand = .notDefined
+        }
+        
     }
     
     nonisolated private func recognitionHandler(audioEngine: AVAudioEngine, result: SFSpeechRecognitionResult?, error: Error?) {
@@ -173,10 +189,9 @@ actor SpeechRecognizer: ObservableObject {
     }
     
     
-    nonisolated func transcribe(_ message: String) {
+    nonisolated private func transcribe(_ message: String) {
         Task { @MainActor in
             transcript = message
-            
         }
     }
     nonisolated private func transcribe(_ error: Error) {
@@ -192,24 +207,27 @@ actor SpeechRecognizer: ObservableObject {
     }
 }
 
+//
+//extension SFSpeechRecognizer {
+//    static func hasAuthorizationToRecognize() async -> Bool {
+//        await withCheckedContinuation { continuation in
+//            requestAuthorization { status in
+//                continuation.resume(returning: status == .authorized)
+//            }
+//        }
+//    }
+//}
+//
+//
+//extension AVAudioSession {
+//    func hasPermissionToRecord() async -> Bool {
+//        await withCheckedContinuation { continuation in
+//            requestRecordPermission { authorized in
+//                continuation.resume(returning: authorized)
+//            }
+//        }
+//    }
+//}
 
-extension SFSpeechRecognizer {
-    static func hasAuthorizationToRecognize() async -> Bool {
-        await withCheckedContinuation { continuation in
-            requestAuthorization { status in
-                continuation.resume(returning: status == .authorized)
-            }
-        }
-    }
-}
 
 
-extension AVAudioSession {
-    func hasPermissionToRecord() async -> Bool {
-        await withCheckedContinuation { continuation in
-            requestRecordPermission { authorized in
-                continuation.resume(returning: authorized)
-            }
-        }
-    }
-}

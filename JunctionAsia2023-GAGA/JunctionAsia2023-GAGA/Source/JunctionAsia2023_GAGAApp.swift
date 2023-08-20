@@ -9,14 +9,9 @@ import SwiftUI
 
 @main
 struct JunctionAsia2023_GAGAApp: App {
-    let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//            TTSView()
-            OnBoardingView()
-
+            ContentView()
         }
     }
 }

@@ -12,25 +12,36 @@ enum STTState {
     case loading
     case done
 }
-let guideSentences = [
+let guideSentencesKo = [
     "기사님과 이렇게 소통해보세요!",
     "이 주소로 가주세요.",
     "포항에서 유명한 맛집 추천해주세요!",
     "얼마나 걸리나요?"
 ]
 
+let guideSentencesEn = [
+    "Communicate with the driver like this!",
+    "Take me to this address, please.",
+    "Please recommend a famous restaurant in Pohang!",
+    "How long does it take?"
+]
+
 struct STTView: View {
-    @StateObject private var textSession = TextMultipeerSession()
+    @AppStorage("userLanguage") var userLanguage = "Unselected"
+    @AppStorage("userType") var userType = "Unselected"
+    @Binding var showSTTModal: Bool
+    @StateObject private var textSession = TextMultipeerSession.shared
     @ObservedObject private var papagoModel = LanguageModel.shared
     @ObservedObject private var speechData = SpeechData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
-    @StateObject var driverRecognizer = CommandRecognizer()
+    @ObservedObject var driverRecognizer: CommandRecognizer
     @ObservedObject private var driverCommandViewModel = DriverCommandViewModel.shared
     @State private var isRecording = false
     @State private var smallCircleSize: CGFloat = 0.8
     @State private var bigCircleSize: CGFloat = 1
     @State private var sttState: STTState = .listening
-    @State private var selectedGuide = guideSentences.randomElement() ?? ""
+    @State private var selectedGuideKo = guideSentencesKo.randomElement() ?? ""
+    @State private var selectedGuideEn = guideSentencesEn.randomElement() ?? ""
     @State private var time = 0
     @State private var timer: Timer?
     @State private var recognizedText = ""
@@ -54,18 +65,22 @@ struct STTView: View {
             }
             
             VStack {
-                if !textSession.currentText.isEmpty {
-                    Text(textSession.currentText)
-                        .foregroundColor(.white)
-                }
                 Spacer()
                     .frame(height: 100)
                 HStack {
                     if recognizedText.isEmpty {
-                        Text(speechData.speechText.isEmpty ? "말씀하시면 텍스트가 입력됩니다. " : speechData.speechText)
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .font(.system(size: 24))
+                        
+                        if userType == "Driver" {
+                            Text(speechData.speechText.isEmpty ? "말씀하시면 텍스트가 입력됩니다. " : speechData.speechText)
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .font(.system(size: 24))
+                        } else {
+                            Text(speechData.speechText.isEmpty ? "If you speak, the text will be entered. " : speechData.speechText)
+                                .foregroundColor(.white)
+                                .fontWeight(.bold)
+                                .font(.system(size: 24))
+                        }
                     } else {
                         Text(recognizedText)
                             .foregroundColor(.white)
@@ -77,9 +92,17 @@ struct STTView: View {
                 .padding()
                 Spacer()
                 if sttState != .done {
-                    Text(selectedGuide)
-                        .foregroundColor(.white)
-                        .font(.system(size: 18))
+                    if userType == "Driver" {
+                        Text(selectedGuideKo)
+                            .foregroundColor(.white)
+                            .font(.system(size: 18))
+                    } else {
+                        Text(selectedGuideEn)
+                            .foregroundColor(.white)
+                            .font(.system(size: 18))
+                    }
+                        
+                    
                 }
                 Spacer()
                     .frame(height: 240)
@@ -97,12 +120,26 @@ struct STTView: View {
         .onAppear {
             startRecognize()
             circleAnimationStart()
+            if userLanguage == "Korean" || userLanguage == "Korea" {
+                speechData.currentLocale = .korea
+            } else{
+                speechData.currentLocale = .english
+            }
+            if userType == "Driver" {
+                papagoModel.sourceLangType = "ko"
+                papagoModel.targetLangType = "en"
+                speechData.currentLocale = .korea
+            } else {
+                papagoModel.sourceLangType = "en"
+                papagoModel.targetLangType = "ko"
+                speechData.currentLocale = .english
+            }
         }
         .onChange(of: speechData.speechText) { _ in
             self.time = 0
         }
         .onChange(of: time) { newValue in
-            if newValue > 4 {
+            if newValue > 2 {
                 if speechData.speechText.isEmpty {
                     time = 0
                 } else {
@@ -116,6 +153,10 @@ struct STTView: View {
         }
         .onChange(of: papagoModel.translatedText) { translatedText in
             textSession.send(text: translatedText)
+            showSTTModal = false
+        }
+        .onDisappear  {
+            endRecognize()
         }
     }
     
@@ -217,8 +258,16 @@ extension STTView {
     }
 }
 
+struct STTPreview: View {
+    @State private var showSTTModal = false
+    @StateObject private var driverRecognizer = CommandRecognizer()
+    var body: some View {
+        STTView(showSTTModal: $showSTTModal, driverRecognizer: driverRecognizer)
+    }
+}
+
 struct STTView_Previews: PreviewProvider {
     static var previews: some View {
-        STTView()
+        STTPreview()
     }
 }

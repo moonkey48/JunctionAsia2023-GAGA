@@ -9,8 +9,22 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @State private var showOnboarding = UserDefaults.standard.string(forKey: "userType") ?? "Unselected" == "Unselected"
+    @State private var opacity: CGFloat = 1.0
     var body: some View {
-        STTView()
+        ZStack {
+            if opacity == 0 {
+                MainView()
+                    .fullScreenCover(isPresented: $showOnboarding, content: OnBoardingView.init)
+            }
+            LaunchScreenView()
+                .opacity(opacity)
+        }
+        .onAppear {
+            withAnimation(.easeInOut(duration: 0.8).delay(1)) {
+                opacity = 0
+            }
+        }
     }
 }
 
