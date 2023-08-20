@@ -21,16 +21,16 @@ struct TTSView: View {
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(Color(hex: "#E9EBEE"), lineWidth: 2)
                     .frame(width: 358, height: 360)
-                VStack {
-                    HStack {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                        Spacer()
-                    }
-                    .padding()
-                    Spacer()
-                }
+//                VStack {
+//                    HStack {
+//                        Image(systemName: "xmark")
+//                            .resizable()
+//                            .frame(width: 20, height: 20)
+//                        Spacer()
+//                    }
+//                    .padding()
+//                    Spacer()
+//                }
                 TextEditor(text: $text)
                     .foregroundColor(Color(.black))
                     .background(RoundedRectangle(cornerRadius: 16).foregroundColor(Color(hex: "#F7F8F9")))
