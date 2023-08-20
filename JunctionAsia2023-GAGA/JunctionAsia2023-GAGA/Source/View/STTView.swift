@@ -20,13 +20,20 @@ let guideSentences = [
 ]
 
 struct STTView: View {
-    @ObservedObject private var speachData = SpeachData.shared
+    @StateObject private var textSession = TextMultipeerSession()
+    @ObservedObject private var papagoModel = LanguageModel.shared
+    @ObservedObject private var speechData = SpeechData.shared
     @StateObject var speechRecognizer = SpeechRecognizer()
+    @StateObject var driverRecognizer = CommandRecognizer()
+    @ObservedObject private var driverCommandViewModel = DriverCommandViewModel.shared
     @State private var isRecording = false
     @State private var smallCircleSize: CGFloat = 0.8
     @State private var bigCircleSize: CGFloat = 1
     @State private var sttState: STTState = .listening
     @State private var selectedGuide = guideSentences.randomElement() ?? ""
+    @State private var time = 0
+    @State private var timer: Timer?
+    @State private var recognizedText = ""
     
     var body: some View {
         ZStack{
@@ -47,52 +54,129 @@ struct STTView: View {
             }
             
             VStack {
+                if !textSession.currentText.isEmpty {
+                    Text(textSession.currentText)
+                        .foregroundColor(.white)
+                }
                 Spacer()
                     .frame(height: 100)
                 HStack {
-                    Text(speachData.speachText.isEmpty ? "말씀하시면 텍스트가 입력됩니다. " : speachData.speachText)
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                        .font(.system(size: 24))
+                    if recognizedText.isEmpty {
+                        Text(speechData.speechText.isEmpty ? "말씀하시면 텍스트가 입력됩니다. " : speechData.speechText)
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .font(.system(size: 24))
+                    } else {
+                        Text(recognizedText)
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .font(.system(size: 24))
+                    }
                     Spacer()
                 }
                 .padding()
                 Spacer()
-                Text(selectedGuide)
-                    .foregroundColor(.white)
-                    .font(.system(size: 18))
+                if sttState != .done {
+                    Text(selectedGuide)
+                        .foregroundColor(.white)
+                        .font(.system(size: 18))
+                }
                 Spacer()
                     .frame(height: 240)
                 switch sttState {
                 case .listening:
-                    Button {
-                        speechRecognizer.resetTranscript()
-                        speechRecognizer.startTranscribing()
-                    } label: {
-                        stopButton
-                    }
+                    listeningView
                 case .loading:
                     loadingButton
                 case .done:
-                    HStack {
-                        STTButtonComponentView(contentText: "전달하기") {
-                            
-                        }
-                        STTButtonComponentView(contentText: "다시녹음", buttonType: .reTranscribing) {
-                            
-                        }
-                    }
-                    .padding()
+                    EmptyView()
                 }
             }
             
         }
         .onAppear {
-            speechRecognizer.startTranscribing()
+            startRecognize()
             circleAnimationStart()
         }
+        .onChange(of: speechData.speechText) { _ in
+            self.time = 0
+        }
+        .onChange(of: time) { newValue in
+            if newValue > 4 {
+                if speechData.speechText.isEmpty {
+                    time = 0
+                } else {
+                    startRecognizeCommand()
+                    sttState = .loading
+                }
+            }
+        }
+        .onChange(of: driverCommandViewModel.driverCommand) { command in
+            handleCommand(command)
+        }
+        .onChange(of: papagoModel.translatedText) { translatedText in
+            textSession.send(text: translatedText)
+        }
     }
-    func circleAnimationStart(){
+    
+    private func translate(value: String){
+        Task {
+            do {
+                try await papagoModel.fetchTranslation(with: value)
+            } catch {
+                print("error on papago")
+            }
+        }
+    }
+    
+    private func startRecognizeCommand(){
+        recognizedText = speechData.speechText
+        translate(value: speechData.speechText)
+        print("stop recognizing and start command")
+        speechRecognizer.resetTranscript()
+        timer?.invalidate()
+        driverRecognizer.startTranscribing()
+    }
+    
+    private func handleCommand(_ command: DriverCommand){
+        print(command.rawValue)
+        switch command {
+        case .start:
+            startRecognize()
+        case .reset:
+            startRecognize()
+        case .restart:
+            startRecognize()
+        case .close:
+            endRecognize()
+        case .notDefined:
+            return
+        }
+    }
+    private func endRecognize(){
+        timer?.invalidate()
+        driverRecognizer.resetTranscript()
+        driverCommandViewModel.driverCommand = .notDefined
+        speechRecognizer.resetTranscript()
+    }
+    
+    private func startRecognize(){
+        // timer setting
+        sttState = .listening
+        recognizedText = ""
+        time = 0
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.time += 1
+        }
+        // stop driver command
+        driverRecognizer.resetTranscript()
+        driverCommandViewModel.driverCommand = .notDefined
+        
+        // start recognize
+        speechRecognizer.startTranscribing()
+    }
+    
+    private func circleAnimationStart(){
         withAnimation(.easeInOut(duration: 1.5).repeatForever()) {
             smallCircleSize = 0.6
         }
@@ -102,28 +186,19 @@ struct STTView: View {
     }
 }
 extension STTView {
-    var stopButton: some View {
-        ZStack {
-            Image("sttStopButton")
-                .resizable()
-                .frame(width: 156, height: 156)
-            Image(systemName: "stop.fill")
-                .resizable()
-                .foregroundColor(.white)
-                .frame(width: 58, height: 58)
-        }
+    var listeningView: some View {
+        Image("sttListening")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 156, height: 156)
     }
     var loadingButton: some View {
-        ZStack {
-            Image("sttStopButton")
-                .resizable()
-                .frame(width: 156, height: 156)
-            ProgressView()
-                .foregroundColor(.white)
-                .frame(width: 58, height: 58)
-                .controlSize(.large)
-                .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
-        }
+        ProgressView()
+            .foregroundColor(.white)
+            .frame(width: 156, height: 156)
+            .controlSize(.large)
+            .scaleEffect(2)
+            .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
     }
     var sttAnimationCircleView: some View {
         VStack {
@@ -145,34 +220,5 @@ extension STTView {
 struct STTView_Previews: PreviewProvider {
     static var previews: some View {
         STTView()
-    }
-}
-
-enum STTButtonType {
-    case send
-    case reTranscribing
-}
-
-struct STTButtonComponentView: View {
-    var contentText: String
-    var buttonType: STTButtonType = .send
-    var buttonAction: () -> Void
-    
-    var body: some View {
-        Button {
-            buttonAction()
-        } label: {
-            HStack {
-                Spacer()
-                Text(contentText)
-                    .frame(height: 36)
-                Spacer()
-            }
-            .padding()
-            .background(buttonType == .send ? Color(hex: "6E65F4") : .white)
-            .foregroundColor(buttonType == .send ? .white : .black)
-            .font(.system(size: 22, weight: .semibold))
-            .cornerRadius(12)
-        }
     }
 }
