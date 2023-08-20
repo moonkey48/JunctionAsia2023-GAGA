@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SettingView: View {
+    @Environment(\.dismiss) var dismiss
+    
     private var selectedLanguage: String {
         if let stored = UserDefaults.standard.string(forKey: "userLanguage") {
             return stored
@@ -24,14 +26,14 @@ struct SettingView: View {
     var body: some View {
             VStack(spacing: 16) {
                 NavigationLink {
-                    EmptyView()
+                    UserTypeDetailView()
                 } label: {
                     capsuleView("User Type", selectedUserType)
                 }
                 .padding(.top, 32)
 
                 NavigationLink {
-                    EmptyView()
+                    LanguageDetailView()
                 } label: {
                     capsuleView("Language", selectedLanguage)
                 }
@@ -71,5 +73,51 @@ struct SettingView: View {
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
+    }
+}
+
+struct UserTypeDetailView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            ForEach(UserType.allCases, id: \.self) { userType in
+                UserTypeCell(userType: userType)
+            }
+            
+            Spacer()
+            Button {
+                dismiss()
+            } label: {
+                Text("Save")
+                    .primaryButtonStyle(isSelected: true)
+            }
+        }
+        .navigationTitle("User Type")
+    }
+}
+
+struct LanguageDetailView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 16) {
+                ForEach(Country.allCases, id: \.self) { country in
+                    LanguageCell(country: country)
+                }
+                Spacer()
+                
+                Button {
+                    dismiss()
+                } label: {
+                    Text("Save")
+                        .primaryButtonStyle(isSelected: true)
+                }
+            }
+        }
+        .padding(.horizontal)
+        .padding(.top, 16)
+        .navigationTitle("Language")
     }
 }
