@@ -119,9 +119,17 @@ extension MainView {
     var TTSComponentView: some View {
         VStack {
             HStack{
-                Text("📝 텍스트")
-                    .foregroundColor(Color.white)
-                    .font(.system(size: 32, weight: .bold))
+                
+                if userType == "Driver" {
+                    Text("📝 텍스트")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 32, weight: .bold))
+                } else {
+                    Text("📝 Text")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 32, weight: .bold))
+                }
+                
                 Spacer()
             }
             Spacer()
@@ -146,9 +154,17 @@ extension MainView {
     var STTComponentView: some View {
         VStack {
             HStack{
-                Text("🎙️ 음성인식")
-                    .foregroundColor(Color.white)
-                    .font(.system(size: 32, weight: .bold))
+                
+                if userType == "Driver" {
+                    Text("🎙️ 음성인식")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 32, weight: .bold))
+                } else {
+                    Text("🎙️ Voice")
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 32, weight: .bold))
+                }
+                
                 Spacer()
             }
             Spacer()

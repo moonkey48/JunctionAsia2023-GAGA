@@ -17,6 +17,7 @@ struct ReceivedTextView: View {
     @Binding var showSTTModal: Bool
     var mainViewSTTRecognizer: MainViewSTTRecognizer
     let synthesizer = AVSpeechSynthesizer()
+    @AppStorage("userType") var userType = "Unselected"
     var body: some View {
         VStack(alignment: .leading) {
             Text(receivedText)
@@ -102,9 +103,18 @@ struct ReceivedTextView: View {
 extension ReceivedTextView {
     var retryButton: some View {
         VStack(alignment: .leading) {
-            Text("다시 듣기")
-                .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.white)
+            
+            if userType == "Driver" {
+                Text("다시 듣기")
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.white)
+            } else {
+                Text("Listen Again")
+                    .foregroundColor(Color.white)
+                    .font(.system(size: 32, weight: .bold))
+            }
+            
+            
             Spacer()
             HStack {
                 Spacer()
@@ -126,9 +136,17 @@ extension ReceivedTextView {
     }
     var answerButton: some View {
         VStack(alignment: .leading) {
-            Text("답장하기")
-                .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.white)
+            
+            if userType == "Driver" {
+                Text("답장하기")
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundColor(.white)
+            } else {
+                Text("Reply")
+                    .foregroundColor(Color.white)
+                    .font(.system(size: 32, weight: .bold))
+            }
+            
             Spacer()
             HStack {
                 Spacer()
