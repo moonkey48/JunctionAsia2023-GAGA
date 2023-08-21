@@ -1,7 +1,8 @@
 # JUNCTION ASIA 2023 - TravelTalK
 ## Team: GAGA
-|Austin|Lina|Gucci|Eden|Aewol|
+|[Austin](https://github.com/moonkey48)|[Lina](https://github.com/juwonleee)|[Gucci](https://github.com/Damagucci-Juice)|[Eden]()|[Aewol](https://github.com/aewols)|
 |:-:|:-:|:-:|:-:|:-:|
+|Developer|Developer|Developer|PM|Designer|
 |![austin](https://github.com/moonkey48/JunctionAsia2023-GAGA/assets/105622985/9ef63800-9959-4cee-8cea-a1e20ec37dd9)|![lina](https://github.com/moonkey48/JunctionAsia2023-GAGA/assets/105622985/347f2c96-3fc5-4e8a-af8b-4ba412a8ee78)|![gucci](https://github.com/moonkey48/JunctionAsia2023-GAGA/assets/105622985/5053d84c-78de-429e-b34e-6aaf5ad902a3)|![eden](https://github.com/moonkey48/JunctionAsia2023-GAGA/assets/105622985/005bf37b-4a88-4bb1-ae0f-a5b83bb3856d)|![aewol](https://github.com/moonkey48/JunctionAsia2023-GAGA/assets/105622985/2bdcec85-5636-48ee-9d3c-6e805f25cc8b)|
 
 ![MacBook Pro 14_](https://github.com/moonkey48/JunctionAsia2023-GAGA/assets/105622985/fb513fe2-1d4f-4ac7-bb05-50577573d9fa)
